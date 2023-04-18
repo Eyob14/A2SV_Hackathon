@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../features/authentication/presentation/pages/LoginPage.dart';
-import '../../../features/authentication/presentation/pages/SignUpPage.dart';
+import '../../../features/authentication/presentation/pages/SignupPage.dart';
 import '../../../features/issue/DetailsPage.dart';
 import '../../../features/issue/HomePage.dart';
 import '../../../features/profile/ProfilePage.dart';
@@ -54,7 +54,7 @@ class AppRouter extends StatelessWidget {
     _router = GoRouter(
       // refreshListenable: authListenable,
       redirect: ((context, state) => redirector(state)),
-      initialLocation: AppRoutes.homePage,
+      initialLocation: AppRoutes.loginPage,
       routes: <GoRoute>[
         GoRoute(
           path: AppRoutes.loginPage,
@@ -63,7 +63,7 @@ class AppRouter extends StatelessWidget {
         ),
         GoRoute(
           path: AppRoutes.signUpPage,
-          builder: (BuildContext context, GoRouterState state) => SignUpPage(),
+          builder: (BuildContext context, GoRouterState state) => const SignupPage(),
         ),
         GoRoute(
           path: AppRoutes.profilePage,
