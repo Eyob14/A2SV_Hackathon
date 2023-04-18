@@ -29,4 +29,3 @@ Technologies Used
     Flutter SDK
     Dart programming language
     Flutter packages for state management, HTTP requests, and UI components
-    Firebase for user authentication and database management
