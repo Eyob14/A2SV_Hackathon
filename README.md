@@ -12,7 +12,7 @@ Setup
 
 bash
 
-    git clone [https://github.com/your-username/schoolhive-mobile.git](https://github.com/Eyob14/A2SV_Hackathon.git)
+    git clone https://github.com/Eyob14/A2SV_Hackathon.git
 
 Install the required dependencies:
 
