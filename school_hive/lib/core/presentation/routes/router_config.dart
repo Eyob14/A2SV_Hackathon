@@ -66,7 +66,7 @@ class AppRouter extends StatelessWidget {
         GoRoute(
           path: AppRoutes.editProfilePage,
           builder: (BuildContext context, GoRouterState state) =>
-              const EditProfilePage(),
+              EditProfilePage(),
         ),
         GoRoute(
           path: AppRoutes.homePage,
