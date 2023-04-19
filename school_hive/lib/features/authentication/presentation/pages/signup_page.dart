@@ -123,7 +123,7 @@ class _SignupPageState extends State<SignupPage> {
               const Spacer(),
               CustomButton(
                 onTap: () {
-                  context.push(AppRoutes.completeProfilePage);
+                  // context.push(AppRoutes.completeProfilePage);
                 },
                 buttonText: 'Continue',
                 width: 85.w,

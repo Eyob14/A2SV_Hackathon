@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -6,6 +7,7 @@ import '../../../../core/presentation/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../features/authentication/presentation/widgets/default_button.dart';
 
+import '../bloc/authentication_bloc.dart';
 import '../widgets/text_button.dart';
 
 class LoginPage extends StatefulWidget {
@@ -121,7 +123,14 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const Spacer(),
               CustomButton(
-                onTap: () {},
+                onTap: () {
+                  context.read<AuthenticationBloc>().add(
+                        LoginEvent(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        ),
+                      );
+                },
                 buttonText: 'Login',
                 width: 85.w,
               ),

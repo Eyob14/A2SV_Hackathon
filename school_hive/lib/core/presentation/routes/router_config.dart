@@ -64,11 +64,11 @@ class AppRouter extends StatelessWidget {
           builder: (BuildContext context, GoRouterState state) =>
               const SignupPage(),
         ),
-        GoRoute(
-          path: AppRoutes.completeProfilePage,
-          builder: (BuildContext context, GoRouterState state) =>
-              const CompleteProfilePage(),
-        ),
+        // GoRoute(
+        //   path: AppRoutes.completeProfilePage,
+        //   builder: (BuildContext context, GoRouterState state) =>
+        //       const CompleteProfilePage(),
+        // ),
         GoRoute(
           path: AppRoutes.profilePage,
           builder: (BuildContext context, GoRouterState state) =>
