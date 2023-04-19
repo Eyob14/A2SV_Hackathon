@@ -2,51 +2,57 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_hive/features/authentication/presentation/pages/complete_profile.dart';
 
+import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
-import '../../../features/authentication/presentation/pages/sign_up_page.dart';
-import '../../../features/issue/presentation/pages/details_page.dart';
-import '../../../features/issue/presentation/pages/home_page.dart';
-import '../../../features/profile/profile_page.dart';
-import '../../utils/SecureStorage.dart';
+import '../../../features/authentication/presentation/pages/signup_page.dart';
+import '../../../features/issue/DetailsPage.dart';
+import '../../../features/issue/HomePage.dart';
+import '../../../features/profile/ProfilePage.dart';
 import 'app_routes.dart';
 
 class AppRouter extends StatelessWidget {
-  // final AuthenticationLocalDataSource localDataSource;
+  final AuthenticationLocalDataSource localDataSource;
   late final GoRouter _router;
 
-  // FutureOr<String?> redirector(state) async {
-  // var isLoggedIn = true;
-  // var isAppInitialized = true;
-  // try {
-  //   await localDataSource.getUserAuthCredential();
-  // } on CacheException {
-  //   isLoggedIn = false;
-  // }
-  // try {
-  //   await localDataSource.getAppInitialization();
-  // } on CacheException {
-  //   isAppInitialized = false;
-  // }
+  FutureOr<String?> redirector(state) async {
+    // var isLoggedIn = true;
+    // var isAppInitialized = true;
+    // try {
+    //   await localDataSource.getUserAuthCredential();
+    // } on CacheException {
+    //   isLoggedIn = false;
+    // }
+    // try {
+    //   await localDataSource.getAppInitialization();
+    // } on CacheException {
+    //   isAppInitialized = false;
+    // }
 
-  // if (isLoggedIn) {
-  //   if (state.location == AppRoutes.onboardingPages) {
-  //     return AppRoutes.homePage;
-  //   }
-  //   return state.location;
-  // } else if (isAppInitialized) {
-  //   if (state.location == AppRoutes.onboardingPages) {
-  //     return AppRoutes.loginPage;
-  //   }
-  //   return state.location;
-  // } else {
-  //   return null;
-  // }
-  // }
+    // if (isLoggedIn) {
+    //   if (state.location == AppRoutes.onboardingPages) {
+    //     return AppRoutes.homePage;
+    //   }
+    //   return state.location;
+    // } else if (isAppInitialized) {
+    //   if (state.location == AppRoutes.onboardingPages) {
+    //     return AppRoutes.loginPage;
+    //   }
+    //   return state.location;
+    // } else {
+    //   return null;
+    // }
+  }
 
-  AppRouter({Key? key}) : super(key: key) {
+  AppRouter({Key? key, required this.localDataSource})
+      // AppRouter({Key? key, required this.authListenable, required this.authBloc})
+      : super(key: key) {
+    // authListenable.authStateProvider(authBloc);
     _router = GoRouter(
-      initialLocation: AppRoutes.homePage,
+      // refreshListenable: authListenable,
+      redirect: ((context, state) => redirector(state)),
+      initialLocation: AppRoutes.completeProfilePage,
       routes: <GoRoute>[
         GoRoute(
           path: AppRoutes.loginPage,
@@ -56,7 +62,12 @@ class AppRouter extends StatelessWidget {
         GoRoute(
           path: AppRoutes.signUpPage,
           builder: (BuildContext context, GoRouterState state) =>
-              const SignUpPage(),
+              const SignupPage(),
+        ),
+        GoRoute(
+          path: AppRoutes.completeProfilePage,
+          builder: (BuildContext context, GoRouterState state) =>
+              const CompleteProfilePage(),
         ),
         GoRoute(
           path: AppRoutes.profilePage,

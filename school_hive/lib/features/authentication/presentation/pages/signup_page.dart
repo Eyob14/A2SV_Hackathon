@@ -8,14 +8,14 @@ import '../../../../features/authentication/presentation/widgets/default_button.
 
 import '../widgets/text_button.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -38,16 +38,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SizedBox(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 32),
           width: 85.w,
           child: Column(
             children: [
-              SvgPicture.asset('assets/images/login.svg'),
+              SvgPicture.asset('assets/images/signup.svg'),
               const Spacer(),
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Login',
+                  'Sign up',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.bold,
@@ -88,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                     Icons.lock_open,
                     color: greyPrimary,
                   ),
-                  const Spacer(),
+                  const SizedBox(width: 8),
                   SizedBox(
                     width: Device.orientation == Orientation.portrait
                         ? 75.w
@@ -121,8 +122,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const Spacer(),
               CustomButton(
-                onTap: () {},
-                buttonText: 'Login',
+                onTap: () {
+                  context.push(AppRoutes.completeProfilePage);
+                },
+                buttonText: 'Continue',
                 width: 85.w,
               ),
               const Spacer(flex: 2),
@@ -130,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    'New to school-hive?',
+                    'Already have an account?',
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: 16,
@@ -139,9 +142,9 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(width: 4),
                   CustomTextButton(
                     onTap: () {
-                      context.push(AppRoutes.signUpPage);
+                      context.push(AppRoutes.loginPage);
                     },
-                    buttonText: 'Signup',
+                    buttonText: 'Login',
                   ),
                 ],
               ),
