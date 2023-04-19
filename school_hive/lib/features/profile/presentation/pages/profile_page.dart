@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/utils/size_config.dart';
+import 'edit_profile_page.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -78,7 +79,11 @@ class ProfilePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                         splashColor: Colors.pink[900],
                         onTap: () {
-                          print('here we go');
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return EditProfilePage();
+                            },
+                          ));
                         },
                         child: Container(
                           padding: const EdgeInsets.all(3),

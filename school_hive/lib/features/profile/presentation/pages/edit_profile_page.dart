@@ -11,16 +11,25 @@ class EditProfilePage extends StatelessWidget {
   EditProfilePage({super.key});
 
   final _emailController = TextEditingController();
+  final _fullNameController = TextEditingController();
   final _phoneController = TextEditingController();
+  final _bioController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    String educationStatus = '';
+    String educationStatus = 'Student';
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black87,
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
         toolbarHeight: 46,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -78,9 +87,7 @@ class EditProfilePage extends StatelessWidget {
                         overlayColor: MaterialStateProperty.all(Colors.white),
                         borderRadius: BorderRadius.circular(100),
                         splashColor: Colors.pink[900],
-                        onTap: () {
-                          print('here we go');
-                        },
+                        onTap: () {},
                         child: Container(
                           padding: const EdgeInsets.all(3),
                           decoration: const BoxDecoration(
@@ -95,7 +102,7 @@ class EditProfilePage extends StatelessWidget {
                             child: const Padding(
                               padding: EdgeInsets.all(8),
                               child: Icon(
-                                Icons.edit,
+                                Icons.photo_camera_sharp,
                                 color: Colors.white,
                               ),
                             ),
@@ -115,17 +122,6 @@ class EditProfilePage extends StatelessWidget {
                     color: Colors.black87,
                   ),
                 ),
-                verticalSpacing(8),
-                Text(
-                  '5th year student\nLove working on UI/UX',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: GoogleFonts.poppins().fontFamily,
-                    color: Colors.black45,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
                 verticalSpacing(32),
                 Form(
                   key: _formKey,
@@ -134,7 +130,28 @@ class EditProfilePage extends StatelessWidget {
                       SizedBox(
                         width: 320,
                         child: TextField(
+                          controller: _fullNameController,
+                          keyboardType: TextInputType.name,
+                          decoration: InputDecoration(
+                            hintText: 'Full Name',
+                            hintStyle: TextStyle(
+                                fontFamily: GoogleFonts.poppins().fontFamily),
+                            border: const UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black87),
+                            ),
+                            prefixIcon: SvgPicture.asset(
+                              'assets/icons/user profile.svg',
+                              fit: BoxFit.scaleDown,
+                            ),
+                          ),
+                        ),
+                      ),
+                      verticalSpacing(12),
+                      SizedBox(
+                        width: 320,
+                        child: TextField(
                           controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             hintText: 'Email',
                             hintStyle: TextStyle(
@@ -151,6 +168,7 @@ class EditProfilePage extends StatelessWidget {
                         width: 320,
                         child: TextField(
                           controller: _phoneController,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             hintText: 'Phone Number',
                             hintStyle: TextStyle(
@@ -175,15 +193,15 @@ class EditProfilePage extends StatelessWidget {
                             'Graduated',
                           ]
                               .map<DropdownMenuItem<String>>(
-                                  (String item) => DropdownMenuItem(
+                                  (item) => DropdownMenuItem(
                                         value: item,
                                         child: Text(
                                           item,
                                         ),
                                       ))
                               .toList(),
-                          onChanged: (String? value) {
-                            educationStatus = value ?? '';
+                          onChanged: (value) {
+                            educationStatus = value!;
                           },
                           decoration: InputDecoration(
                             hintText: 'Education status',
@@ -202,6 +220,41 @@ class EditProfilePage extends StatelessWidget {
                     ],
                   ),
                 ),
+                verticalSpacing(40),
+                SizedBox(
+                  width: 320,
+                  height: 50,
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(primaryColor),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.update,
+                            color: Colors.white,
+                          ),
+                          horizontalSpacing(8),
+                          Text(
+                            'Update',
+                            style: TextStyle(
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      )),
+                )
               ],
             ),
           ),
