@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:school_hive/features/issue/domain/entities/Issue.dart';
 
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/sign_up_page.dart';
 import '../../../features/issue/presentation/pages/details_page.dart';
 import '../../../features/issue/presentation/pages/home_page.dart';
-import '../../../features/profile/profile_page.dart';
+import '../../../features/profile/presentaion/pages/profile_page.dart';
 import '../../utils/SecureStorage.dart';
 import 'app_routes.dart';
 
@@ -71,7 +72,7 @@ class AppRouter extends StatelessWidget {
         GoRoute(
           path: AppRoutes.detailsPage,
           builder: (BuildContext context, GoRouterState state) =>
-              const DetailsPage(),
+              DetailsPage(issue: state.extra as Issue),
         ),
       ],
     );
