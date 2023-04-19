@@ -17,7 +17,7 @@ class ProfileCard extends StatelessWidget {
       children: [
         CircleAvatar(
           backgroundImage: AssetImage(avatar),
-          radius: 4.w,
+          radius: 6.w,
         ),
         SizedBox(
           width: 2.w,
@@ -29,7 +29,7 @@ class ProfileCard extends StatelessWidget {
               name,
               style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 1.2.h,
+                  fontSize: 1.65.h,
                   fontFamily: "Poppins"),
             ),
             Text(
@@ -37,7 +37,7 @@ class ProfileCard extends StatelessWidget {
               style: TextStyle(
                   color: Color.fromRGBO(171, 171, 171, 1),
                   fontWeight: FontWeight.w400,
-                  fontSize: 0.8.h,
+                  fontSize: 1.2.h,
                   fontFamily: "Poppins"),
             )
           ],

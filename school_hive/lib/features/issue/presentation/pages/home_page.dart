@@ -7,11 +7,18 @@ import '../../../../core/dummy/home_page_dummy.dart';
 import '../../../../core/presentation/routes/app_routes.dart';
 import '../widgets/issue_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int selectedTag = 0;
+  @override
   Widget build(BuildContext context) {
+    const tags = ["For You", "Resources", "Scholarships", "Campus Life"];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: whiteColor,
@@ -45,69 +52,71 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.only(top: 1.h),
+        padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 5.w),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "For You",
-                  style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 1.5.h,
-                    fontWeight: FontWeight.w600,
+            SizedBox(
+              height: 6.h,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedTag = index;
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      Text(
+                        tags[index],
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 1.5.h,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      selectedTag == index
+                          ? Container(
+                              height: 0.44.w,
+                              width: 3.5.w,
+                              color: primaryColor,
+                            )
+                          : Container()
+                    ],
                   ),
                 ),
-                Text(
-                  "Resources",
-                  style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 1.5.h,
-                    fontWeight: FontWeight.w600,
-                  ),
+                separatorBuilder: (context, index) => SizedBox(
+                  width: 7.w,
                 ),
-                Text(
-                  "Scholarships",
-                  style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 1.5.h,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  "Campus Life",
-                  style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 1.5.h,
-                    fontWeight: FontWeight.w600,
-                  ),
-                )
-              ],
+                itemCount: tags.length,
+              ),
             ),
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(top: 2.2.h),
-                child: ListView.separated(
-                    itemBuilder: (context, index) => GestureDetector(
-                          child: IssueCard(
-                            issue: issueList[index % 3],
-                          ),
-                          onTap: () {
-                            context.push(
-                              AppRoutes.detailsPage,
-                              extra: issueList[index % 3],
-                            );
-                          },
+              child: ListView.separated(
+                  itemBuilder: (context, index) => GestureDetector(
+                        child: IssueCard(
+                          issue: issueList[index % 3],
                         ),
-                    separatorBuilder: (context, index) => SizedBox(
-                          height: 2.5.h,
-                        ),
-                    itemCount: issueList.length * 2),
-              ),
+                        onTap: () {
+                          context.push(
+                            AppRoutes.detailsPage,
+                            extra: issueList[index % 3],
+                          );
+                        },
+                      ),
+                  separatorBuilder: (context, index) => SizedBox(
+                        height: 2.5.h,
+                      ),
+                  itemCount: issueList.length * 2),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primaryColor,
+        onPressed: () {},
+        tooltip: 'Create Issue',
+        child: const Icon(Icons.add),
       ),
     );
   }

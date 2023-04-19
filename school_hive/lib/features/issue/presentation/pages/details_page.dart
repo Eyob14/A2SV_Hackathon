@@ -58,6 +58,9 @@ class DetailsPage extends StatelessWidget {
                     ),
                   )
                 : Container(),
+            SizedBox(
+              height: 2.h,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -75,6 +78,9 @@ class DetailsPage extends StatelessWidget {
                           ),
                           child: Icon(Icons.arrow_upward_outlined, size: 4.w),
                         ),
+                        SizedBox(
+                          width: 1.w,
+                        ),
                         Text(
                           "183",
                           style: TextStyle(
@@ -83,6 +89,9 @@ class DetailsPage extends StatelessWidget {
                           ),
                         )
                       ],
+                    ),
+                    SizedBox(
+                      width: 6.w,
                     ),
                     Row(
                       children: [
@@ -96,11 +105,14 @@ class DetailsPage extends StatelessWidget {
                           ),
                           child: Icon(Icons.arrow_downward_outlined, size: 4.w),
                         ),
+                        SizedBox(
+                          width: 1.w,
+                        ),
                         Text(
                           "0",
                           style: TextStyle(
                             color: bodyTextColor,
-                            fontSize: 1.h,
+                            fontSize: 1.5.h,
                           ),
                         ),
                       ],
@@ -110,11 +122,14 @@ class DetailsPage extends StatelessWidget {
                 Row(
                   children: [
                     const Icon(Icons.messenger_outline),
+                    SizedBox(
+                      width: 1.w,
+                    ),
                     Text(
                       "24 Comments",
                       style: TextStyle(
                         color: bodyTextColor,
-                        fontSize: 1.h,
+                        fontSize: 1.4.h,
                       ),
                     ),
                   ],
