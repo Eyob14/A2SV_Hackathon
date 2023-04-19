@@ -46,6 +46,8 @@ class _LoginPageState extends State<LoginPage> {
               state.authenticationStatus ==
                   AuthenticationStatus.authenticated) {
             context.push(AppRoutes.homePage);
+          } else if (state is AuthState && state.status == Status.failure) {
+            // Todo: display error message
           }
         },
         child: Center(
