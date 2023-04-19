@@ -7,7 +7,8 @@ import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/sign_up_page.dart';
 import '../../../features/issue/presentation/pages/details_page.dart';
 import '../../../features/issue/presentation/pages/home_page.dart';
-import '../../../features/profile/profile_page.dart';
+import '../../../features/profile/presentation/pages/edit_profile_page.dart';
+import '../../../features/profile/presentation/pages/profile_page.dart';
 import '../../utils/SecureStorage.dart';
 import 'app_routes.dart';
 
@@ -46,7 +47,7 @@ class AppRouter extends StatelessWidget {
 
   AppRouter({Key? key}) : super(key: key) {
     _router = GoRouter(
-      initialLocation: AppRoutes.homePage,
+      initialLocation: AppRoutes.profilePage,
       routes: <GoRoute>[
         GoRoute(
           path: AppRoutes.loginPage,
@@ -60,8 +61,12 @@ class AppRouter extends StatelessWidget {
         ),
         GoRoute(
           path: AppRoutes.profilePage,
+          builder: (BuildContext context, GoRouterState state) => ProfilePage(),
+        ),
+        GoRoute(
+          path: AppRoutes.editProfilePage,
           builder: (BuildContext context, GoRouterState state) =>
-              const ProfilePage(),
+              const EditProfilePage(),
         ),
         GoRoute(
           path: AppRoutes.homePage,
