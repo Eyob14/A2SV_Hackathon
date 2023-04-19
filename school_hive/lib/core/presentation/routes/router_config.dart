@@ -10,7 +10,9 @@ import '../../../features/authentication/presentation/pages/signup_page.dart';
 import '../../../features/issue/domain/entities/Issue.dart';
 import '../../../features/issue/presentation/pages/details_page.dart';
 import '../../../features/issue/presentation/pages/home_page.dart';
-import '../../../features/profile/ProfilePage.dart';
+import '../../../features/issue/presentation/pages/home_page_navigator.dart';
+import '../../../features/profile/presentaion/pages/edit_profile_page.dart';
+import '../../../features/profile/presentaion/pages/profile_page.dart';
 import 'app_routes.dart';
 
 class AppRouter extends StatelessWidget {
@@ -82,7 +84,7 @@ class AppRouter extends StatelessWidget {
         GoRoute(
           path: AppRoutes.homePage,
           builder: (BuildContext context, GoRouterState state) =>
-              const HomePage(),
+              const HomePageNavigator(),
         ),
         GoRoute(
           path: AppRoutes.detailsPage,
