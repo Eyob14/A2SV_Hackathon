@@ -21,14 +21,17 @@ class AuthenticationRemoteDataSourceImpl
     required this.client,
   });
 
-  final baseUrl = 'http://localhost:3000/api/v1';
+  final baseUrl = 'https://temari-net-backend.vercel.app/api/v1';
 
   @override
   Future<UserAuthCredentialModel> login({
     required String email,
     required String password,
   }) async {
-    final loginBody = json.encode({'email': email, 'password': password});
+    final loginBody = json.encode({
+      'email': email,
+      'password': password,
+    });
     final response = await client.post(
       Uri.parse('$baseUrl/user/login'),
       body: loginBody,

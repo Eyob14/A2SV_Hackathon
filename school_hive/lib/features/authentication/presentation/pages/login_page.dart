@@ -39,123 +39,133 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: 85.w,
-          child: Column(
-            children: [
-              SvgPicture.asset('assets/images/login.svg'),
-              const Spacer(),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Login',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 26,
-                  ),
-                ),
-              ),
-              const Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.alternate_email,
-                    color: greyPrimary,
-                  ),
-                  const SizedBox(width: 8),
-                  SizedBox(
-                    width: Device.orientation == Orientation.portrait
-                        ? 75.w
-                        : 40.w,
-                    child: TextField(
-                      controller: _emailController,
-                      style: const TextStyle(fontFamily: 'Poppins'),
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.zero,
-                        hintText: 'Email',
-                        hintStyle: TextStyle(fontFamily: 'Poppins'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.lock_open,
-                    color: greyPrimary,
-                  ),
-                  const Spacer(),
-                  SizedBox(
-                    width: Device.orientation == Orientation.portrait
-                        ? 75.w
-                        : 40.w,
-                    child: TextField(
-                      controller: _passwordController,
-                      obscureText: !_passwordVisibility,
-                      obscuringCharacter: '*',
-                      style: const TextStyle(
-                        fontFamily: 'Poppins',
-                      ),
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        hintStyle: const TextStyle(fontFamily: 'Poppins'),
-                        suffixIcon: _passwordVisibility
-                            ? GestureDetector(
-                                onTap: () => changeVisibility(),
-                                child:
-                                    const Icon(Icons.remove_red_eye_outlined),
-                              )
-                            : InkWell(
-                                onTap: () => changeVisibility(),
-                                child:
-                                    const Icon(Icons.visibility_off_outlined),
-                              ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const Spacer(),
-              CustomButton(
-                onTap: () {
-                  context.read<AuthenticationBloc>().add(
-                        LoginEvent(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                        ),
-                      );
-                },
-                buttonText: 'Login',
-                width: 85.w,
-              ),
-              const Spacer(flex: 2),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'New to school-hive?',
+      body: BlocListener<AuthenticationBloc, AuthenticationState>(
+        listener: (context, state) {
+          if (state is AuthState &&
+              state.status == Status.loaded &&
+              state.authenticationStatus ==
+                  AuthenticationStatus.authenticated) {
+            context.push(AppRoutes.homePage);
+          }
+        },
+        child: Center(
+          child: SizedBox(
+            width: 85.w,
+            child: Column(
+              children: [
+                SvgPicture.asset('assets/images/login.svg'),
+                const Spacer(),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Login',
                     style: TextStyle(
                       fontFamily: 'Poppins',
-                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26,
                     ),
                   ),
-                  const SizedBox(width: 4),
-                  CustomTextButton(
-                    onTap: () {
-                      context.push(AppRoutes.signUpPage);
-                    },
-                    buttonText: 'Signup',
-                  ),
-                ],
-              ),
-              const Spacer(),
-            ],
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.alternate_email,
+                      color: greyPrimary,
+                    ),
+                    const SizedBox(width: 8),
+                    SizedBox(
+                      width: Device.orientation == Orientation.portrait
+                          ? 75.w
+                          : 40.w,
+                      child: TextField(
+                        controller: _emailController,
+                        style: const TextStyle(fontFamily: 'Poppins'),
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+                          hintText: 'Email',
+                          hintStyle: TextStyle(fontFamily: 'Poppins'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.lock_open,
+                      color: greyPrimary,
+                    ),
+                    const Spacer(),
+                    SizedBox(
+                      width: Device.orientation == Orientation.portrait
+                          ? 75.w
+                          : 40.w,
+                      child: TextField(
+                        controller: _passwordController,
+                        obscureText: !_passwordVisibility,
+                        obscuringCharacter: '*',
+                        style: const TextStyle(
+                          fontFamily: 'Poppins',
+                        ),
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                          hintStyle: const TextStyle(fontFamily: 'Poppins'),
+                          suffixIcon: _passwordVisibility
+                              ? GestureDetector(
+                                  onTap: () => changeVisibility(),
+                                  child:
+                                      const Icon(Icons.remove_red_eye_outlined),
+                                )
+                              : InkWell(
+                                  onTap: () => changeVisibility(),
+                                  child:
+                                      const Icon(Icons.visibility_off_outlined),
+                                ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+                CustomButton(
+                  onTap: () {
+                    context.read<AuthenticationBloc>().add(
+                          LoginEvent(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          ),
+                        );
+                  },
+                  buttonText: 'Login',
+                  width: 85.w,
+                ),
+                const Spacer(flex: 2),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'New to school-hive?',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    CustomTextButton(
+                      onTap: () {
+                        context.push(AppRoutes.signUpPage);
+                      },
+                      buttonText: 'Signup',
+                    ),
+                  ],
+                ),
+                const Spacer(),
+              ],
+            ),
           ),
         ),
       ),
