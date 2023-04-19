@@ -5,3 +5,4 @@ const login = 'assets/images/login.svg';
 const signup = 'assets/images/signup.svg';
 const graduation = 'assets/images/graduation.png';
 const String profileImage = 'assets/images/profile.png';
+const String profile = 'assets/images/profile.png';
