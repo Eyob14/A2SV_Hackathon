@@ -14,7 +14,6 @@ class EditProfilePage extends StatelessWidget {
   final _fullNameController = TextEditingController();
   final _phoneController = TextEditingController();
   final _bioController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +123,6 @@ class EditProfilePage extends StatelessWidget {
                 ),
                 verticalSpacing(32),
                 Form(
-                  key: _formKey,
                   child: Column(
                     children: [
                       SizedBox(
@@ -132,10 +130,17 @@ class EditProfilePage extends StatelessWidget {
                         child: TextField(
                           controller: _fullNameController,
                           keyboardType: TextInputType.name,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: GoogleFonts.poppins().fontFamily,
+                          ),
                           decoration: InputDecoration(
                             hintText: 'Full Name',
                             hintStyle: TextStyle(
-                                fontFamily: GoogleFonts.poppins().fontFamily),
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                              fontWeight: FontWeight.w500,
+                            ),
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black87),
                             ),
@@ -152,10 +157,17 @@ class EditProfilePage extends StatelessWidget {
                         child: TextField(
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: GoogleFonts.poppins().fontFamily,
+                          ),
                           decoration: InputDecoration(
                             hintText: 'Email',
                             hintStyle: TextStyle(
-                                fontFamily: GoogleFonts.poppins().fontFamily),
+                              fontWeight: FontWeight.w500,
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                            ),
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black87),
                             ),
@@ -169,10 +181,17 @@ class EditProfilePage extends StatelessWidget {
                         child: TextField(
                           controller: _phoneController,
                           keyboardType: TextInputType.phone,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: GoogleFonts.poppins().fontFamily,
+                          ),
                           decoration: InputDecoration(
                             hintText: 'Phone Number',
                             hintStyle: TextStyle(
-                                fontFamily: GoogleFonts.poppins().fontFamily),
+                              fontWeight: FontWeight.w500,
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                            ),
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black87),
                             ),
@@ -197,6 +216,12 @@ class EditProfilePage extends StatelessWidget {
                                         value: item,
                                         child: Text(
                                           item,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                            fontFamily: GoogleFonts.poppins()
+                                                .fontFamily,
+                                          ),
                                         ),
                                       ))
                               .toList(),
@@ -206,6 +231,7 @@ class EditProfilePage extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: 'Education status',
                             hintStyle: TextStyle(
+                                fontWeight: FontWeight.w500,
                                 fontFamily: GoogleFonts.poppins().fontFamily),
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black87),

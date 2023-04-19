@@ -14,8 +14,6 @@ class ProfilePage extends StatelessWidget {
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _educationStatusController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -132,17 +130,23 @@ class ProfilePage extends StatelessWidget {
                 ),
                 verticalSpacing(32),
                 Form(
-                  key: _formKey,
                   child: Column(
                     children: [
                       SizedBox(
                         width: 320,
                         child: TextField(
                           controller: _emailController,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: GoogleFonts.poppins().fontFamily,
+                          ),
                           decoration: InputDecoration(
                             hintText: 'Email',
                             hintStyle: TextStyle(
-                                fontFamily: GoogleFonts.poppins().fontFamily),
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                              fontWeight: FontWeight.w500,
+                            ),
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black87),
                             ),
@@ -155,10 +159,17 @@ class ProfilePage extends StatelessWidget {
                         width: 320,
                         child: TextField(
                           controller: _phoneController,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: GoogleFonts.poppins().fontFamily,
+                          ),
                           decoration: InputDecoration(
                             hintText: 'Phone Number',
                             hintStyle: TextStyle(
-                                fontFamily: GoogleFonts.poppins().fontFamily),
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                              fontWeight: FontWeight.w500,
+                            ),
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black87),
                             ),
@@ -174,10 +185,17 @@ class ProfilePage extends StatelessWidget {
                         width: 320,
                         child: TextField(
                           controller: _educationStatusController,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: GoogleFonts.poppins().fontFamily,
+                          ),
                           decoration: InputDecoration(
                             hintText: 'Education status',
                             hintStyle: TextStyle(
-                                fontFamily: GoogleFonts.poppins().fontFamily),
+                              fontFamily: GoogleFonts.poppins().fontFamily,
+                              fontWeight: FontWeight.w500,
+                            ),
                             border: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black87),
                             ),
