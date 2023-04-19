@@ -26,6 +26,7 @@ dependencies:
   flutter_svg: ^2.0.5
   http: ^0.13.5
   dotted_border: ^2.0.0+3
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:

@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:school_hive/core/error/error.dart';
 import 'package:school_hive/features/profile/data/models/profile.dart';
 
-import '../../../../core/utils/SecureStorage.dart';
+import '../../../../core/utils/secure_storage_keys.dart';
 import '../../domain/entities/profile.dart';
 
 abstract class ProfileRemoteDataSource {

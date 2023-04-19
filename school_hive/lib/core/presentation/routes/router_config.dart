@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_hive/features/authentication/presentation/pages/complete_profile.dart';
+import 'package:school_hive/features/events/presentation/pages/events_page.dart';
 
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
 import '../../../features/issue/domain/entities/Issue.dart';
 import '../../../features/issue/presentation/pages/details_page.dart';
-import '../../../features/issue/presentation/pages/home_page.dart';
 import '../../../features/issue/presentation/pages/home_page_navigator.dart';
 import '../../../features/profile/presentaion/pages/edit_profile_page.dart';
 import '../../../features/profile/presentaion/pages/profile_page.dart';
@@ -55,7 +55,7 @@ class AppRouter extends StatelessWidget {
     _router = GoRouter(
       // refreshListenable: authListenable,
       redirect: ((context, state) => redirector(state)),
-      initialLocation: AppRoutes.homePage,
+      initialLocation: AppRoutes.eventsPage,
       routes: <GoRoute>[
         GoRoute(
           path: AppRoutes.loginPage,
@@ -90,6 +90,11 @@ class AppRouter extends StatelessWidget {
           path: AppRoutes.detailsPage,
           builder: (BuildContext context, GoRouterState state) =>
               DetailsPage(issue: state.extra as Issue),
+        ),
+        GoRoute(
+          path: AppRoutes.eventsPage,
+          builder: (BuildContext context, GoRouterState state) =>
+              const EventPage(),
         ),
       ],
     );

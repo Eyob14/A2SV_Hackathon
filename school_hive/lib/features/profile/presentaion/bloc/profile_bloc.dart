@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:school_hive/features/profile/domain/entities/profile.dart';
-import 'package:school_hive/features/profile/presentation/bloc/profile_event.dart';
-import 'package:school_hive/features/profile/presentation/bloc/profile_state.dart';
+import 'package:school_hive/features/profile/presentaion/bloc/profile_event.dart';
+import 'package:school_hive/features/profile/presentaion/bloc/profile_state.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/presentation/usecases/usecase.dart';
