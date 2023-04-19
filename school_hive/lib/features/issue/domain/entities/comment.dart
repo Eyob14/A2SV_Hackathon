@@ -6,7 +6,7 @@ class Comment extends Equatable {
   final int upVotes;
   final int downVotes;
   final DateTime time;
-  
+
   Comment({
     required this.id,
     required this.description,

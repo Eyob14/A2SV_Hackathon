@@ -7,8 +7,9 @@ import 'package:school_hive/features/authentication/presentation/pages/complete_
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
-import '../../../features/issue/DetailsPage.dart';
-import '../../../features/issue/HomePage.dart';
+import '../../../features/issue/domain/entities/Issue.dart';
+import '../../../features/issue/presentation/pages/details_page.dart';
+import '../../../features/issue/presentation/pages/home_page.dart';
 import '../../../features/profile/ProfilePage.dart';
 import 'app_routes.dart';
 
@@ -52,7 +53,7 @@ class AppRouter extends StatelessWidget {
     _router = GoRouter(
       // refreshListenable: authListenable,
       redirect: ((context, state) => redirector(state)),
-      initialLocation: AppRoutes.loginPage,
+      initialLocation: AppRoutes.homePage,
       routes: <GoRoute>[
         GoRoute(
           path: AppRoutes.loginPage,

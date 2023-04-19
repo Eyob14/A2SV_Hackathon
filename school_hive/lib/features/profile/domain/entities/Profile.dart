@@ -5,7 +5,6 @@ class Profile extends Equatable {
   final String email;
   final String userName;
   final String name;
-  final String password;
   final String bio;
   final String country;
   final String avatar;
@@ -17,7 +16,6 @@ class Profile extends Equatable {
     required this.email,
     required this.userName,
     required this.name,
-    required this.password,
     required this.bio,
     required this.country,
     required this.avatar,
@@ -31,7 +29,6 @@ class Profile extends Equatable {
         email,
         userName,
         name,
-        password,
         bio,
         country,
         avatar,

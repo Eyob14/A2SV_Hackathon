@@ -141,6 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                             password: _passwordController.text,
                           ),
                         );
+                    context.go(AppRoutes.homePage);
                   },
                   buttonText: 'Login',
                   width: 85.w,

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../../core/dummy/home_page_dummy.dart';
+import '../../../../core/presentation/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../domain/entities/Issue.dart';
 import '../../../profile/presentaion/widgets/profile_card.dart';
+import '../widgets/comment_card.dart';
 
 class DetailsPage extends StatelessWidget {
   final Issue issue;
@@ -59,82 +63,30 @@ class DetailsPage extends StatelessWidget {
                   )
                 : Container(),
             SizedBox(
-              height: 2.h,
+              height: 1.h,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(0.6.w),
-                          padding: EdgeInsets.all(0.3.w),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4.w),
-                            border:
-                                Border.all(color: headlineColor, width: 0.2.w),
-                          ),
-                          child: Icon(Icons.arrow_upward_outlined, size: 4.w),
+            Divider(
+              thickness: 0.2.w,
+            ),
+            SizedBox(
+              height: 3.h,
+            ),
+            Expanded(
+              child: ListView.separated(
+                  itemBuilder: (context, index) => GestureDetector(
+                        child: CommentCard(
+                          comment: comments[index % 3],
                         ),
-                        SizedBox(
-                          width: 1.w,
-                        ),
-                        Text(
-                          "183",
-                          style: TextStyle(
-                            color: bodyTextColor,
-                            fontSize: 1.5.h,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      width: 6.w,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(0.6.w),
-                          padding: EdgeInsets.all(0.3.w),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4.w),
-                            border:
-                                Border.all(color: headlineColor, width: 0.2.w),
-                          ),
-                          child: Icon(Icons.arrow_downward_outlined, size: 4.w),
-                        ),
-                        SizedBox(
-                          width: 1.w,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(
-                            color: bodyTextColor,
-                            fontSize: 1.5.h,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Icon(Icons.messenger_outline),
-                    SizedBox(
-                      width: 1.w,
-                    ),
-                    Text(
-                      "24 Comments",
-                      style: TextStyle(
-                        color: bodyTextColor,
-                        fontSize: 1.4.h,
+                        onTap: () {
+                          context.push(
+                            AppRoutes.detailsPage,
+                          );
+                        },
                       ),
-                    ),
-                  ],
-                )
-              ],
+                  separatorBuilder: (context, index) => SizedBox(
+                        height: 2.8.h,
+                      ),
+                  itemCount: comments.length * 2),
             ),
           ],
         ),

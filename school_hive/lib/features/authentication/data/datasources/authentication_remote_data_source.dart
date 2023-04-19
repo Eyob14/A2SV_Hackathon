@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 
 import '../../../../core/error/exception.dart';
 import '../../../../core/presentation/usecases/usecase.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../model/user_auth_credential_model.dart';
 
 abstract class AuthenticationRemoteDataSource {
@@ -20,8 +21,6 @@ class AuthenticationRemoteDataSourceImpl
   AuthenticationRemoteDataSourceImpl({
     required this.client,
   });
-
-  final baseUrl = 'https://temari-net-backend.vercel.app/api/v1';
 
   @override
   Future<UserAuthCredentialModel> login({

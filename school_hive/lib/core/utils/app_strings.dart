@@ -1,1 +1,1 @@
-const baseUrl = "https://temari-net-backend.vercel.app/";
+const baseUrl = "https://school-hive-net.onrender.com/api/v1";

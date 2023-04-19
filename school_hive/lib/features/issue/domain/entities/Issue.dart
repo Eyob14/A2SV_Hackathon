@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:school_hive/features/issue/data/models/issue_model.dart';
 
 import '../../../profile/domain/entities/Profile.dart';
 
@@ -6,7 +7,7 @@ class Issue extends Equatable {
   final String id;
   final String title;
   final String description;
-  final List<String> archives;
+  final List<Archive> archives;
   final List<String> tags;
   final bool isFavorite;
   final Profile profile;

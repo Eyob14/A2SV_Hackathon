@@ -7,6 +7,11 @@ import 'features/authentication/data/datasources/authentication_remote_data_sour
 import 'features/authentication/domain/repositories/authentication_repository.dart';
 import 'features/authentication/domain/usecases/login_usecase.dart';
 import 'features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'features/issue/data/datasources/issue_remote_data_source.dart';
+import 'features/issue/data/repositories/issue_repository_impl.dart';
+import 'features/issue/domain/repositories/issue_repository.dart';
+import 'features/issue/domain/usecases/get_all_issue_usecase.dart';
+import 'features/issue/presentation/bloc/issues_bloc.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -17,10 +22,16 @@ Future<void> init() async {
   serviceLocator.registerFactory(
     () => AuthenticationBloc(loginUsecase: serviceLocator()),
   );
+  serviceLocator.registerFactory(
+    () => IssuesBloc(getAllIssuesUseCase: serviceLocator()),
+  );
 
   // Usecase
   serviceLocator.registerLazySingleton(
     () => LoginUsecase(repository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => GetAllIssuesUseCase(issuesRepository: serviceLocator()),
   );
 
   // Repository
@@ -28,6 +39,11 @@ Future<void> init() async {
     () => AuthenticationRepositoryImpl(
       remoteDataSource: serviceLocator(),
       localDataSource: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<IssuesRepository>(
+    () => IssuesRepositoryImpl(
+      remoteDataSource: serviceLocator(),
     ),
   );
 
@@ -40,6 +56,13 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton<AuthenticationLocalDataSource>(
     () => AuthenticationLocalDataSourceImpl(
+      flutterSecureStorage: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerLazySingleton<IssuesRemoteDataSource>(
+    () => IssuesRemoteDataSourceImpl(
+      client: serviceLocator(),
       flutterSecureStorage: serviceLocator(),
     ),
   );

@@ -38,7 +38,10 @@ class IssueCard extends StatelessWidget {
         ),
         Text(
           issue.description,
-          style: TextStyle(color: bodyTextColor, fontSize: 1.3.h),
+          style: TextStyle(
+            color: bodyTextColor,
+            fontSize: 1.3.h,
+          ),
         ),
         SizedBox(
           height: 1.h,
