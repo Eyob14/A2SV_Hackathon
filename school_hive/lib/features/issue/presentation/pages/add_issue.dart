@@ -4,7 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:school_hive/core/utils/app_colors.dart';
-import 'package:school_hive/features/issue/widgets/file_item.dart';
+
+import '../widgets/file_item.dart';
 
 class AddIssue extends StatefulWidget {
   const AddIssue({super.key});

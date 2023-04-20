@@ -2,14 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:school_hive/features/authentication/presentation/pages/complete_profile.dart';
-import 'package:school_hive/features/issue/add_issue.dart';
-
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
-import '../../../features/issue/DetailsPage.dart';
-import '../../../features/issue/HomePage.dart';
+import '../../../features/issue/presentation/pages/DetailsPage.dart';
+import '../../../features/issue/presentation/pages/HomePage.dart';
+import '../../../features/issue/presentation/pages/add_issue.dart';
 import '../../../features/profile/ProfilePage.dart';
 import 'app_routes.dart';
 
