@@ -21,6 +21,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
   Future<Either<Failure, Profile>> getProfileInfo() async {
     try {
       final profileInfo = await remoteDataSource.getProfileInfo();
+      print("profileINfo fetched -----------------------------");
       return Right(profileInfo);
     } on ServerException {
       return Left(ServerFailure());

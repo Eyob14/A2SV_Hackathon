@@ -71,8 +71,7 @@ class IssuesRemoteDataSourceImpl implements IssuesRemoteDataSource {
       String token =
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJlbWFpbCI6ImV5b2J6ZWJlbmUxMDU0QGdtYWlsLmNvbSIsInVzZXJOYW1lIjoiZXlvYjEyIiwibmFtZSI6IkV5b2IgWmViZW5lIiwicGFzc3dvcmQiOiIkMmIkMTAkSEZxSE05Mkw1bHlRN0QuTVp3WFVmT2NBbVlrRzA0cW5pWWRSSGQwV3N6UWk3NU5KWXlOT2EiLCJiaW8iOiJJIGFtIGEgZm91cnRoIHllYXIgc29mdHdhcmUgZW5naW5lZXJpbmcgc3R1ZGVudCBhdCBhZGRpcyBhYmFiYSB1bml2ZXJzaXR5IiwiZGVwYXJ0bWVudCI6IllvdXIgZGVwYXJ0bWVudCBnb2VzIGhlcmUuIiwieWVhciI6IllvdXIgeWVhciBnb2VzIGhlcmUuIiwiY291bnRyeSI6IkV0aGlvcGlhIiwiYXZhdGFyIjoiNjNmNzM1OTRiYTNjMDgxM2EyMThmZjJlIiwiZmF2b3JpdGVUYWdzIjpbXSwicmVzZXRUb2tlbiI6IiIsIl9pZCI6IjY0NDAwMjMwOTY3MjE2ZGE5N2YyMGNkYyIsImNyZWF0ZWRBdCI6IjIwMjMtMDQtMTlUMTU6MDE6MDQuNjUyWiIsInVwZGF0ZWRBdCI6IjIwMjMtMDQtMTlUMTU6MDE6MDQuNjUyWiIsIl9fdiI6MH0sImlhdCI6MTY4MTkxNjQ2NSwiZXhwIjoxNjg0NTA4NDY1fQ.HA_r6Ly_VYqV-QWwvIVhubLZ5XQ1mRuLWqP2JvuhBj0";
 
-      var url = Uri.parse('$baseUrl/answer/by-issue/:$id');
-      print("Get comment Api is called");
+      var url = Uri.parse('$baseUrl/answer/by-issue/$id');
       final response = await client.get(
         url,
         headers: {
@@ -89,7 +88,6 @@ class IssuesRemoteDataSourceImpl implements IssuesRemoteDataSource {
         throw ServerException();
       }
     } catch (e) {
-      print(e);
       throw ServerException();
     }
   }

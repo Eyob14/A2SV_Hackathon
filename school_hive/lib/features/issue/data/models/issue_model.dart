@@ -1,5 +1,5 @@
 import '../../../profile/data/models/profile_model.dart';
-import '../../../profile/domain/entities/Profile.dart';
+import '../../../profile/domain/entities/profile.dart';
 import '../../domain/entities/Issue.dart';
 
 class IssueModel extends Issue {

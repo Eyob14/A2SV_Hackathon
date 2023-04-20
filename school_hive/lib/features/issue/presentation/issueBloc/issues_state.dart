@@ -18,14 +18,14 @@ class AllIssues extends IssuesState {
   List<Object> get props => [issues];
 }
 
-class AllAnswersForIssues extends IssuesState {
-  final List<Comment> comments;
+// class AllAnswersForIssues extends IssuesState {
+//   final List<Comment> comments;
 
-  const AllAnswersForIssues({required this.comments});
+//   const AllAnswersForIssues({required this.comments});
 
-  @override
-  List<Object> get props => [comments];
-}
+//   @override
+//   List<Object> get props => [comments];
+// }
 
 class IssuesError extends IssuesState {
   final String message;

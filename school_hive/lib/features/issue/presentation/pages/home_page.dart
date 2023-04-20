@@ -6,7 +6,7 @@ import 'package:school_hive/core/utils/app_colors.dart';
 
 import '../../../../core/dummy/home_page_dummy.dart';
 import '../../../../core/presentation/routes/app_routes.dart';
-import '../bloc/issues_bloc.dart';
+import '../issueBloc/issues_bloc.dart';
 import '../widgets/issue_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -127,13 +127,16 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsets.only(top: 35.h),
                     child: const CircularProgressIndicator(),
                   );
-                } else {
+                } else if (state is IssuesError) {
                   return Container(
                     padding: EdgeInsets.only(top: 16.h),
                     child: const Center(
                       child: Text('No Results Found...'),
                     ),
                   );
+                } else {
+                  context.read<IssuesBloc>().add(GetAllIssuesEvent());
+                  return SizedBox();
                 }
               },
             ),

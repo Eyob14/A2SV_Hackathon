@@ -9,11 +9,11 @@ abstract class IssuesEvent extends Equatable {
 
 class GetAllIssuesEvent extends IssuesEvent {}
 
-class GetAllAnswersForIssueEvent extends IssuesEvent {
-  final String id;
+// class GetAllAnswersForIssueEvent extends IssuesEvent {
+//   final String id;
 
-  GetAllAnswersForIssueEvent({required this.id});
+//   GetAllAnswersForIssueEvent({required this.id});
 
-  @override
-  List<Object> get props => [id];
-}
+//   @override
+//   List<Object> get props => [id];
+// }

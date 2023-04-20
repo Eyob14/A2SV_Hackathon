@@ -6,7 +6,9 @@ import 'core/presentation/routes/router_config.dart';
 import 'core/presentation/widgets/dismiss_keyboard.dart';
 import 'features/authentication/data/datasources/authentication_local_data_source.dart';
 import 'features/classes/presentation/bloc/classes_bloc.dart';
-import 'features/issue/presentation/bloc/issues_bloc.dart';
+import 'features/issue/presentation/commentsBloc/comments_bloc.dart';
+import 'features/issue/presentation/issueBloc/issues_bloc.dart';
+import 'features/profile/presentaion/bloc/profile_bloc.dart';
 import 'injection_container.dart' as di;
 import 'injection_container.dart';
 
@@ -23,8 +25,14 @@ void main() async {
         BlocProvider<IssuesBloc>(
           create: (_) => serviceLocator<IssuesBloc>(),
         ),
+        BlocProvider<CommentsBloc>(
+          create: (_) => serviceLocator<CommentsBloc>(),
+        ),
         BlocProvider<ClassesBloc>(
           create: (_) => serviceLocator<ClassesBloc>(),
+        ),
+        BlocProvider<ProfileBloc>(
+          create: (_) => serviceLocator<ProfileBloc>(),
         ),
       ],
       child: const MyApp(),

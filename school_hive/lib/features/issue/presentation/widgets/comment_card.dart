@@ -8,8 +8,17 @@ import '../../../../core/utils/app_colors.dart';
 
 class CommentCard extends StatefulWidget {
   final Comment comment;
+  final String name;
+  final DateTime time;
+  final String profileImage;
 
-  const CommentCard({super.key, required this.comment});
+  const CommentCard({
+    super.key,
+    required this.comment,
+    required this.name,
+    required this.time,
+    required this.profileImage,
+  });
 
   @override
   State<CommentCard> createState() => _CommentCardState();
@@ -21,9 +30,9 @@ class _CommentCardState extends State<CommentCard> {
     return Column(
       children: [
         ProfileCard(
-          name: "Eyob Zebene",
-          time: DateTime.now(),
-          avatar: profileImage,
+          name: widget.name,
+          time: widget.time,
+          avatar: widget.profileImage,
         ),
         Padding(
           padding: EdgeInsets.symmetric(

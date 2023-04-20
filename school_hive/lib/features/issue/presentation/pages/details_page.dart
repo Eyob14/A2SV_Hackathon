@@ -8,7 +8,8 @@ import '../../../../core/presentation/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../domain/entities/Issue.dart';
 import '../../../profile/presentaion/widgets/profile_card.dart';
-import '../bloc/issues_bloc.dart';
+import '../commentsBloc/comments_bloc.dart';
+import '../issueBloc/issues_bloc.dart';
 import '../widgets/comment_card.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -24,7 +25,7 @@ class _DetailsPageState extends State<DetailsPage> {
   void initState() {
     super.initState();
     context
-        .read<IssuesBloc>()
+        .read<CommentsBloc>()
         .add(GetAllAnswersForIssueEvent(id: widget.issue.id));
   }
 
@@ -86,38 +87,54 @@ class _DetailsPageState extends State<DetailsPage> {
             SizedBox(
               height: 3.h,
             ),
-            BlocBuilder<IssuesBloc, IssuesState>(
+            BlocBuilder<CommentsBloc, CommentsState>(
               builder: (context, state) {
                 if (state is AllAnswersForIssues) {
-                  return Expanded(
-                    child: ListView.separated(
-                        itemBuilder: (context, index) => GestureDetector(
-                              child: CommentCard(
-                                comment: comments[index % 3],
-                              ),
-                              onTap: () {
-                                context.push(
-                                  AppRoutes.detailsPage,
-                                );
-                              },
-                            ),
-                        separatorBuilder: (context, index) => SizedBox(
-                              height: 2.8.h,
-                            ),
-                        itemCount: comments.length * 2),
-                  );
-                } else if (state is IssuesInitial) {
+                  print("All Answers for");
+                  print(state);
+                  return state.comments.isNotEmpty
+                      ? Expanded(
+                          child: ListView.separated(
+                              itemBuilder: (context, index) => GestureDetector(
+                                    child: CommentCard(
+                                      comment: state.comments[index],
+                                      profileImage: widget.issue.profile.avatar,
+                                      name: widget.issue.profile.name,
+                                      time: widget.issue.profile.createdAt,
+                                    ),
+                                    onTap: () {
+                                      context.push(
+                                        AppRoutes.detailsPage,
+                                      );
+                                    },
+                                  ),
+                              separatorBuilder: (context, index) => SizedBox(
+                                    height: 2.8.h,
+                                  ),
+                              itemCount: state.comments.length),
+                        )
+                      : Padding(
+                          padding: EdgeInsets.only(top: 25.h),
+                          child: Text(
+                            "Be The First To Give Answer For The Issue",
+                            style: TextStyle(
+                                fontSize: 2.4.h, color: headlineColor),
+                          ),
+                        );
+                } else if (state is CommentsInitial) {
                   return Padding(
-                    padding: EdgeInsets.only(top: 35.h),
+                    padding: EdgeInsets.only(top: 25.h),
                     child: const CircularProgressIndicator(),
                   );
-                } else {
+                } else if (state is CommentError) {
                   return Container(
                     padding: EdgeInsets.only(top: 16.h),
                     child: const Center(
                       child: Text('No Results Found...'),
                     ),
                   );
+                } else {
+                  return SizedBox();
                 }
               },
             ),

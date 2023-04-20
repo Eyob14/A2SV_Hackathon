@@ -11,7 +11,9 @@ import '../../domain/usecases/get_profile_info_usecase.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final GetProfileInfoUseCase profileInfoUseCase;
 
-  ProfileBloc(super.initialState, {required this.profileInfoUseCase});
+  ProfileBloc({required this.profileInfoUseCase}) : super(ProfileInitial()) {
+    on<GetProfileInfo>(_getProfileInfo);
+  }
 
   void _getProfileInfo(GetProfileInfo event, Emitter<ProfileState> emit) async {
     emit(ProfileInitial());
@@ -22,7 +24,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   ProfileState _errorOrProfile(Either<Failure, Profile> failureOrProfile) {
     return failureOrProfile.fold(
-      (failure) => const ProfileError(message: "Couldn't fetch issues"),
+      (failure) =>
+          const ProfileError(message: "Couldn't fetch profile information"),
       (profileInfo) => ProfileInfo(profileInfo: profileInfo),
     );
   }

@@ -1,6 +1,6 @@
 import '../../features/issue/domain/entities/Issue.dart';
 import '../../features/issue/domain/entities/comment.dart';
-import '../../features/profile/domain/entities/Profile.dart';
+import '../../features/profile/domain/entities/profile.dart';
 import '../utils/image_urls.dart';
 
 List<Issue> issueList = [

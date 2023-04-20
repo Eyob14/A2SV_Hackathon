@@ -1,4 +1,4 @@
-import '../../domain/entities/Profile.dart';
+import '../../domain/entities/profile.dart';
 
 class ProfileModel extends Profile {
   ProfileModel({
@@ -14,16 +14,17 @@ class ProfileModel extends Profile {
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
-    // final tags = json["favoriteTags"];
-    // List<String> tagsList = tags.cast<String>();
-    // print(tagsList);
+    String avatar = "";
+    if (json["avatar"] != null) {
+      avatar = json["avatar"]["fileAddress"];
+    }
     return ProfileModel(
       id: json["_id"],
       email: json["email"],
       userName: json["userName"],
       name: json["name"],
       bio: json["bio"],
-      avatar: json["avatar"]["fileAddress"],
+      avatar: avatar,
       country: json["country"],
       favoriteTags: List<String>.from(json["favoriteTags"].map((x) => x)),
       createdAt: DateTime.parse(json["createdAt"]),

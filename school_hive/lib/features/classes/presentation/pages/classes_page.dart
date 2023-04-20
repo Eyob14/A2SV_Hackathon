@@ -76,7 +76,7 @@ class _ClassesPageState extends State<ClassesPage> {
         child: BlocBuilder<ClassesBloc, ClassesState>(
           builder: (context, state) {
             if (state is AllClasses) {
-              return state.classes.length != 0
+              return state.classes.isNotEmpty
                   ? ListView.separated(
                       itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
