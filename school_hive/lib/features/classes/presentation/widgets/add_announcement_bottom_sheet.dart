@@ -2,22 +2,24 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:school_hive/features/class/presentation/widgets/custom_text_field.dart';
+import 'dart:math' as math;
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../question/presentation/widgets/file_item.dart';
+import 'custom_text_field.dart';
 
-class AddEventBottomSheet extends StatefulWidget {
-  const AddEventBottomSheet({super.key});
+class AddAnnouncementBottomSheet extends StatefulWidget {
+  const AddAnnouncementBottomSheet({super.key});
 
   @override
-  State<AddEventBottomSheet> createState() => _AddEventBottomSheetState();
+  State<AddAnnouncementBottomSheet> createState() =>
+      _AddAnnouncementBottomSheetState();
 }
 
-class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
-  final _eventTitleController = TextEditingController();
-  final _descriptionController = TextEditingController();
-  final _googleMeetLinkController = TextEditingController();
+class _AddAnnouncementBottomSheetState
+    extends State<AddAnnouncementBottomSheet> {
+  final _titleController = TextEditingController();
+  final _messageController = TextEditingController();
 
   List<PlatformFile> files = [];
 
@@ -33,9 +35,8 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
 
   @override
   void dispose() {
-    _eventTitleController.dispose();
-    _descriptionController.dispose();
-    _googleMeetLinkController.dispose();
+    _titleController.dispose();
+    _messageController.dispose();
     super.dispose();
   }
 
@@ -45,14 +46,13 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
       body: Center(
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
-          height: 90.h,
           width: 90.w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RichText(
                 text: const TextSpan(
-                  text: 'Event Title ',
+                  text: 'Title ',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: darkGreyPrimary,
@@ -69,12 +69,12 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                 ),
               ),
               CustomTextField(
-                textController: _eventTitleController,
+                textController: _titleController,
               ),
               const SizedBox(height: 12),
               RichText(
                 text: const TextSpan(
-                  text: 'Description ',
+                  text: 'Message ',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: darkGreyPrimary,
@@ -91,22 +91,8 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
                 ),
               ),
               CustomTextField(
-                textController: _descriptionController,
+                textController: _messageController,
                 isMultiline: true,
-              ),
-              const SizedBox(height: 12),
-              RichText(
-                text: const TextSpan(
-                  text: 'Google meet link',
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    color: darkGreyPrimary,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-              CustomTextField(
-                textController: _googleMeetLinkController,
               ),
               const SizedBox(height: 12),
               RichText(

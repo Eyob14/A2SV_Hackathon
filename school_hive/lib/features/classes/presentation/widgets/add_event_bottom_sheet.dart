@@ -45,7 +45,6 @@ class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
       body: Center(
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
-          height: 90.h,
           width: 90.w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

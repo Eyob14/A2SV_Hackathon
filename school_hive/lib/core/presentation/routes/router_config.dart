@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_hive/features/class/presentation/widgets/add_announcement_bottom_sheet.dart';
 import 'package:school_hive/features/class/presentation/widgets/add_event_bottom_sheet.dart';
+import 'package:school_hive/features/classes/presentation/pages/class_detail_page.dart';
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
@@ -98,6 +99,11 @@ class AppRouter extends StatelessWidget {
           path: AppRoutes.addAnnouncementPage,
           builder: (BuildContext context, GoRouterState state) =>
               const AddAnnouncementBottomSheet(),
+        ),
+        GoRoute(
+          path: AppRoutes.classDetailsPage,
+          builder: (BuildContext context, GoRouterState state) =>
+              const ClassDetailsPage(),
         ),
       ],
     );

@@ -46,6 +46,7 @@ class _AddAnnouncementBottomSheetState
       body: Center(
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
+          height: 90.h,
           width: 90.w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
