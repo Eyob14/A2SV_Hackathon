@@ -21,7 +21,7 @@ class AuthenticationRemoteDataSourceImpl
     required this.client,
   });
 
-  final baseUrl = 'https://temari-net-backend.vercel.app/api/v1';
+  final baseUrl = 'https://school-hive-net.onrender.com/api/v1';
 
   @override
   Future<UserAuthCredentialModel> login({

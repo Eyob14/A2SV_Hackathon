@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:school_hive/features/authentication/presentation/pages/complete_profile.dart';
+import 'package:school_hive/features/issue/add_issue.dart';
 
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
@@ -52,7 +53,7 @@ class AppRouter extends StatelessWidget {
     _router = GoRouter(
       // refreshListenable: authListenable,
       redirect: ((context, state) => redirector(state)),
-      initialLocation: AppRoutes.loginPage,
+      initialLocation: AppRoutes.addIssuePage,
       routes: <GoRoute>[
         GoRoute(
           path: AppRoutes.loginPage,
@@ -83,6 +84,11 @@ class AppRouter extends StatelessWidget {
           path: AppRoutes.detailsPage,
           builder: (BuildContext context, GoRouterState state) =>
               const DetailsPage(),
+        ),
+        GoRoute(
+          path: AppRoutes.addIssuePage,
+          builder: (BuildContext context, GoRouterState state) =>
+              const AddIssue(),
         ),
       ],
     );
