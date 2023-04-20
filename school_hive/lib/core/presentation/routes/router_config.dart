@@ -7,10 +7,10 @@ import 'package:school_hive/features/class/presentation/widgets/add_event_bottom
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
-import '../../../features/profile/ProfilePage.dart';
-import '../../../features/question/presentation/pages/DetailsPage.dart';
-import '../../../features/question/presentation/pages/HomePage.dart';
 import '../../../features/question/presentation/pages/add_question.dart';
+import '../../../features/issue/presentation/pages/home_page_navigator.dart';
+import '../../../features/profile/presentaion/pages/edit_profile_page.dart';
+import '../../../features/profile/presentaion/pages/profile_page.dart';
 import 'app_routes.dart';
 
 class AppRouter extends StatelessWidget {
@@ -53,7 +53,7 @@ class AppRouter extends StatelessWidget {
     _router = GoRouter(
       // refreshListenable: authListenable,
       redirect: ((context, state) => redirector(state)),
-      initialLocation: AppRoutes.loginPage,
+      initialLocation: AppRoutes.homePage,
       routes: <GoRoute>[
         GoRoute(
           path: AppRoutes.loginPage,
@@ -72,18 +72,17 @@ class AppRouter extends StatelessWidget {
         // ),
         GoRoute(
           path: AppRoutes.profilePage,
+          builder: (BuildContext context, GoRouterState state) => ProfilePage(),
+        ),
+        GoRoute(
+          path: AppRoutes.editProfilePage,
           builder: (BuildContext context, GoRouterState state) =>
-              const ProfilePage(),
+              EditProfilePage(),
         ),
         GoRoute(
           path: AppRoutes.homePage,
           builder: (BuildContext context, GoRouterState state) =>
-              const HomePage(),
-        ),
-        GoRoute(
-          path: AppRoutes.detailsPage,
-          builder: (BuildContext context, GoRouterState state) =>
-              const DetailsPage(),
+              const HomePageNavigator(),
         ),
         GoRoute(
           path: AppRoutes.addIssuePage,

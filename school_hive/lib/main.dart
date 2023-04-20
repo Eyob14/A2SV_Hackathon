@@ -6,6 +6,8 @@ import 'core/presentation/routes/router_config.dart';
 import 'core/presentation/widgets/dismiss_keyboard.dart';
 import 'features/authentication/data/datasources/authentication_local_data_source.dart';
 import 'features/question/presentation/bloc/question_bloc.dart';
+import 'features/classes/presentation/bloc/classes_bloc.dart';
+import 'features/issue/presentation/bloc/issues_bloc.dart';
 import 'injection_container.dart' as di;
 import 'injection_container.dart';
 
@@ -22,6 +24,12 @@ void main() async {
         BlocProvider<QuestionsBloc>(
           create: (_) => serviceLocator<QuestionsBloc>(),
         ),
+        BlocProvider<IssuesBloc>(
+          create: (_) => serviceLocator<IssuesBloc>(),
+        ),
+        BlocProvider<ClassesBloc>(
+          create: (_) => serviceLocator<ClassesBloc>(),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -34,11 +42,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'SchoolHive',
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (overScroll) {
           overScroll.disallowIndicator();

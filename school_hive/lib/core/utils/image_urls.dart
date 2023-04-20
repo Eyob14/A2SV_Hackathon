@@ -7,3 +7,13 @@ const graduation = 'assets/images/graduation.png';
 const asterisk = 'assets/images/asterisk.png';
 const fileDoc = 'assets/images/file_doc.png';
 const options = 'assets/images/options.png';
+const plusIcon = 'assets/icons/plus rounded.svg';
+const String profileImage = 'assets/images/profile.png';
+const String searchIcon = 'assets/icons/search-icon.svg';
+const String profile = 'assets/images/profile.png';
+// navigation icons
+const homeIcon = 'assets/icons/home_icon.svg';
+const eventIcon = 'assets/icons/event_icon.svg';
+const classIcon = 'assets/icons/class_icon.svg';
+const favoriteIcon = 'assets/icons/favorite_icon.svg';
+const profileIcon = 'assets/icons/profile_icon.svg';
