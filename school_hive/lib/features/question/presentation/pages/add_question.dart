@@ -7,17 +7,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:school_hive/core/utils/app_colors.dart';
 
-import '../bloc/issues_bloc.dart';
+import '../bloc/question_bloc.dart';
 import '../widgets/file_item.dart';
 
-class AddIssue extends StatefulWidget {
-  const AddIssue({super.key});
+class AddQuestion extends StatefulWidget {
+  const AddQuestion({super.key});
 
   @override
-  State<AddIssue> createState() => _AddIssueState();
+  State<AddQuestion> createState() => _AddQuestionState();
 }
 
-class _AddIssueState extends State<AddIssue> {
+class _AddQuestionState extends State<AddQuestion> {
   final _titleController = TextEditingController();
   final _messageController = TextEditingController();
 
@@ -200,8 +200,8 @@ class _AddIssueState extends State<AddIssue> {
               const Spacer(),
               InkWell(
                 onTap: () {
-                  context.read<IssuesBloc>().add(
-                        AddIssueEvent(
+                  context.read<QuestionsBloc>().add(
+                        AddQuestionEvent(
                           title: _titleController.text,
                           message: _messageController.text,
                           archives: files,

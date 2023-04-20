@@ -5,17 +5,17 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/presentation/usecases/usecase.dart';
-import '../entities/issue.dart';
-import '../repositories/issue_repository.dart';
+import '../entities/question.dart';
+import '../repositories/question_repository.dart';
 
-class AddIssueUsecase implements UseCase<Issue, AddIssueParams> {
-  final IssueRepository repository;
+class AddQuestionUsecase implements UseCase<Question, AddQuestionParams> {
+  final QuestionRepository repository;
 
-  AddIssueUsecase({required this.repository});
+  AddQuestionUsecase({required this.repository});
 
   @override
-  Future<Either<Failure, Issue>> call(AddIssueParams params) async {
-    return await repository.addIssue(
+  Future<Either<Failure, Question>> call(AddQuestionParams params) async {
+    return await repository.addQuestion(
       title: params.title,
       message: params.message,
       archives: params.archives,
@@ -23,12 +23,12 @@ class AddIssueUsecase implements UseCase<Issue, AddIssueParams> {
   }
 }
 
-class AddIssueParams extends Equatable {
+class AddQuestionParams extends Equatable {
   final String title;
   final String message;
   final List<File> archives;
 
-  const AddIssueParams({
+  const AddQuestionParams({
     required this.title,
     required this.message,
     required this.archives,

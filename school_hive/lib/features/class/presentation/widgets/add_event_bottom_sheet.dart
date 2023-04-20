@@ -5,7 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:school_hive/features/class/presentation/widgets/custom_text_field.dart';
 
 import '../../../../core/utils/app_colors.dart';
-import '../../../issue/presentation/widgets/file_item.dart';
+import '../../../question/presentation/widgets/file_item.dart';
 
 class AddEventBottomSheet extends StatefulWidget {
   const AddEventBottomSheet({super.key});

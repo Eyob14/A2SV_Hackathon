@@ -1,11 +1,11 @@
 import '../../domain/entities/archive.dart';
-import '../../domain/entities/issue.dart';
+import '../../domain/entities/question.dart';
 import 'archive_model.dart';
 import 'class_model.dart';
 import 'user_model.dart';
 
-class IssueModel extends Issue {
-  const IssueModel({
+class QuestionModel extends Question {
+  const QuestionModel({
     required super.id,
     required super.userId,
     required super.classId,
@@ -18,7 +18,7 @@ class IssueModel extends Issue {
     required super.isFavorite,
   });
 
-  IssueModel copyWith({
+  QuestionModel copyWith({
     UserModel? userId,
     ClassModel? classId,
     String? title,
@@ -29,7 +29,7 @@ class IssueModel extends Issue {
     DateTime? createdAt,
     DateTime? updatedAt,
   }) =>
-      IssueModel(
+      QuestionModel(
         userId: userId ?? this.userId,
         classId: classId ?? this.classId,
         title: title ?? this.title,
@@ -42,7 +42,7 @@ class IssueModel extends Issue {
         isFavorite: false,
       );
 
-  factory IssueModel.fromJson(Map<String, dynamic> json) => IssueModel(
+  factory QuestionModel.fromJson(Map<String, dynamic> json) => QuestionModel(
         userId: UserModel.fromJson(json["userId"]),
         classId: ClassModel.fromJson(json["classId"]),
         title: json["title"],

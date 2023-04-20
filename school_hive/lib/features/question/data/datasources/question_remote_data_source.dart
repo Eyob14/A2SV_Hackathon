@@ -6,22 +6,22 @@ import 'package:school_hive/features/authentication/data/datasources/authenticat
 import 'package:school_hive/features/authentication/domain/domain.dart';
 
 import '../../../../core/error/exception.dart';
-import '../models/issue_model.dart';
+import '../models/question_model.dart';
 
-abstract class IssueRemoteDataSource {
-  Future<IssueModel> addIssue({
+abstract class QuestionRemoteDataSource {
+  Future<QuestionModel> addQuestion({
     required String title,
     required String message,
     required List<File> archives,
   });
 }
 
-class IssueRemoteDataSourceImpl extends IssueRemoteDataSource {
+class QuestionRemoteDataSourceImpl extends QuestionRemoteDataSource {
   final http.Client client;
 
   final AuthenticationLocalDataSource authenticationLocalDataSource;
 
-  IssueRemoteDataSourceImpl({
+  QuestionRemoteDataSourceImpl({
     required this.client,
     required this.authenticationLocalDataSource,
   });
@@ -29,7 +29,7 @@ class IssueRemoteDataSourceImpl extends IssueRemoteDataSource {
   final baseUrl = 'https://school-hive-net.onrender.com/api/v1';
 
   @override
-  Future<IssueModel> addIssue({
+  Future<QuestionModel> addQuestion({
     required String title,
     required String message,
     required List<File> archives,
@@ -70,7 +70,7 @@ class IssueRemoteDataSourceImpl extends IssueRemoteDataSource {
 
       // handle response
       if (res.statusCode == 201) {
-        return IssueModel.fromJson(jsonDecode(res.body)['data']);
+        return QuestionModel.fromJson(jsonDecode(res.body)['data']);
       } else {
         throw ServerException();
       }

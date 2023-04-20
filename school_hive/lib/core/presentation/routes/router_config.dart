@@ -7,10 +7,10 @@ import 'package:school_hive/features/class/presentation/widgets/add_event_bottom
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
-import '../../../features/issue/presentation/pages/DetailsPage.dart';
-import '../../../features/issue/presentation/pages/HomePage.dart';
-import '../../../features/issue/presentation/pages/add_issue.dart';
 import '../../../features/profile/ProfilePage.dart';
+import '../../../features/question/presentation/pages/DetailsPage.dart';
+import '../../../features/question/presentation/pages/HomePage.dart';
+import '../../../features/question/presentation/pages/add_question.dart';
 import 'app_routes.dart';
 
 class AppRouter extends StatelessWidget {
@@ -88,7 +88,7 @@ class AppRouter extends StatelessWidget {
         GoRoute(
           path: AppRoutes.addIssuePage,
           builder: (BuildContext context, GoRouterState state) =>
-              const AddIssue(),
+              const AddQuestion(),
         ),
         GoRoute(
           path: AppRoutes.addEventPage,

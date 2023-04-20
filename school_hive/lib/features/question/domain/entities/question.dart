@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:school_hive/features/issue/domain/entities/user.dart';
+import 'package:school_hive/features/question/domain/entities/user.dart';
 
 import 'archive.dart';
 
-class Issue extends Equatable {
-  const Issue({
+class Question extends Equatable {
+  const Question({
     required this.id,
     required this.userId,
     required this.classId,

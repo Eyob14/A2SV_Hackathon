@@ -5,7 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'dart:math' as math;
 
 import '../../../../core/utils/app_colors.dart';
-import '../../../issue/presentation/widgets/file_item.dart';
+import '../../../question/presentation/widgets/file_item.dart';
 import 'custom_text_field.dart';
 
 class AddAnnouncementBottomSheet extends StatefulWidget {

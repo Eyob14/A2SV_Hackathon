@@ -1,18 +1,18 @@
-part of 'issues_bloc.dart';
+part of 'question_bloc.dart';
 
-abstract class IssuesEvent extends Equatable {
-  const IssuesEvent();
+abstract class QuestionsEvent extends Equatable {
+  const QuestionsEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class AddIssueEvent extends IssuesEvent {
+class AddQuestionEvent extends QuestionsEvent {
   final String title;
   final String message;
   final List<File> archives;
 
-  const AddIssueEvent({
+  const AddQuestionEvent({
     required this.title,
     required this.message,
     required this.archives,
