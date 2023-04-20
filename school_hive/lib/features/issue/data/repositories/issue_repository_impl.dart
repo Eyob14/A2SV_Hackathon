@@ -22,8 +22,16 @@ class IssueRepositoryImpl extends IssueRepository {
     required String title,
     required String message,
     required List<File> archives,
-  }) {
-    // TODO: implement addIssue
-    throw UnimplementedError();
+  }) async {
+    try {
+      final issue = await remoteDataSource.addIssue(
+        title: title,
+        message: message,
+        archives: archives,
+      );
+      return Right(issue);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
   }
 }

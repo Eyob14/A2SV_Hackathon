@@ -1,10 +1,13 @@
+import 'dart:io';
 import 'dart:math' as math;
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:school_hive/core/utils/app_colors.dart';
 
+import '../bloc/issues_bloc.dart';
 import '../widgets/file_item.dart';
 
 class AddIssue extends StatefulWidget {
@@ -18,14 +21,16 @@ class _AddIssueState extends State<AddIssue> {
   final _titleController = TextEditingController();
   final _messageController = TextEditingController();
 
-  List<PlatformFile> files = [];
+  List<PlatformFile> selectedFiles = [];
+  List<File> files = [];
 
   void pickFile() async {
     FilePickerResult? result =
         await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null) {
       setState(() {
-        files.addAll(result.files);
+        selectedFiles.addAll(result.files);
+        files.addAll(result.paths.map((file) => File(file!)));
       });
     }
   }
@@ -186,14 +191,23 @@ class _AddIssueState extends State<AddIssue> {
                     itemCount: files.length,
                     itemBuilder: (BuildContext context, int index) {
                       return FileItem(
-                        fileName: files[index].name,
-                        fileSize: files[index].size,
+                        fileName: selectedFiles[index].name,
+                        fileSize: selectedFiles[index].size,
                       );
                     },
                   ),
                 ),
               const Spacer(),
               InkWell(
+                onTap: () {
+                  context.read<IssuesBloc>().add(
+                        AddIssueEvent(
+                          title: _titleController.text,
+                          message: _messageController.text,
+                          archives: files,
+                        ),
+                      );
+                },
                 child: Container(
                   padding: const EdgeInsets.all(12),
                   width: 90.w,
