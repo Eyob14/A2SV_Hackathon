@@ -11,4 +11,5 @@ class AppRoutes {
   static const String addIssuePage = '/addIssue';
   static const String classPagePage = '/classPage';
   static const String classDetailsPage = '/classDetails';
+  static const String eventsPage = '/events';
 }

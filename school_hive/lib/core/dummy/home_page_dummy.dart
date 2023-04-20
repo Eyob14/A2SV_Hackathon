@@ -9,8 +9,8 @@ List<Issue> issueList = [
     title: "Join Hackathon competition prepared for all African students",
     description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-    archives: [],
-    tags: [],
+    archives: const [],
+    tags: const [],
     isFavorite: false,
     profile: Profile(
       avatar: profileImage,
