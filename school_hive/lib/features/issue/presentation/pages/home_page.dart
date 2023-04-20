@@ -145,7 +145,9 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
-        onPressed: () {},
+        onPressed: () {
+          context.push(AppRoutes.addIssuePage);
+        },
         tooltip: 'Create Issue',
         child: const Icon(Icons.add),
       ),

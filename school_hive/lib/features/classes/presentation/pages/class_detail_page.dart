@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:school_hive/features/class/presentation/widgets/add_announcement_bottom_sheet.dart';
-import 'package:school_hive/features/class/presentation/widgets/add_event_bottom_sheet.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../widgets/add_announcement_bottom_sheet.dart';
+import '../widgets/add_event_bottom_sheet.dart';
 
 class ClassDetailsPage extends StatelessWidget {
   const ClassDetailsPage({super.key});

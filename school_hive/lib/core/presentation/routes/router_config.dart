@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:school_hive/features/class/presentation/widgets/add_announcement_bottom_sheet.dart';
-import 'package:school_hive/features/class/presentation/widgets/add_event_bottom_sheet.dart';
 import 'package:school_hive/features/classes/presentation/pages/class_detail_page.dart';
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
+import '../../../features/authentication/presentation/pages/complete_profile.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
+import '../../../features/classes/presentation/widgets/add_announcement_bottom_sheet.dart';
+import '../../../features/classes/presentation/widgets/add_event_bottom_sheet.dart';
 import '../../../features/question/presentation/pages/add_question.dart';
 import '../../../features/issue/presentation/pages/home_page_navigator.dart';
 import '../../../features/profile/presentaion/pages/edit_profile_page.dart';
@@ -54,7 +55,7 @@ class AppRouter extends StatelessWidget {
     _router = GoRouter(
       // refreshListenable: authListenable,
       redirect: ((context, state) => redirector(state)),
-      initialLocation: AppRoutes.homePage,
+      initialLocation: AppRoutes.loginPage,
       routes: <GoRoute>[
         GoRoute(
           path: AppRoutes.loginPage,
@@ -66,11 +67,11 @@ class AppRouter extends StatelessWidget {
           builder: (BuildContext context, GoRouterState state) =>
               const SignupPage(),
         ),
-        // GoRoute(
-        //   path: AppRoutes.completeProfilePage,
-        //   builder: (BuildContext context, GoRouterState state) =>
-        //       const CompleteProfilePage(),
-        // ),
+        GoRoute(
+          path: AppRoutes.completeProfilePage,
+          builder: (BuildContext context, GoRouterState state) =>
+              const CompleteProfilePage(),
+        ),
         GoRoute(
           path: AppRoutes.profilePage,
           builder: (BuildContext context, GoRouterState state) => ProfilePage(),

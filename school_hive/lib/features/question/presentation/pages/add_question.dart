@@ -39,24 +39,15 @@ class _AddQuestionState extends State<AddQuestion> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        primary: false,
+        backgroundColor: whiteColor,
         elevation: 0,
-        centerTitle: true,
-        leading: InkWell(
-          onTap: () {},
-          child: const Icon(
-            Icons.arrow_back,
-            color: darkGreyPrimary,
-          ),
-        ),
-        title: const Text(
-          'Add Issue',
+        title: Text(
+          "Add Issue",
           style: TextStyle(
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-            color: darkGreyPrimary,
+            fontFamily: "Poppins",
+            fontWeight: FontWeight.w500,
+            fontSize: 2.2.h,
+            color: headlineColor,
           ),
         ),
       ),
