@@ -1,22 +1,23 @@
-import 'dart:math' as math;
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:school_hive/core/utils/app_colors.dart';
+import 'package:school_hive/features/class/presentation/widgets/custom_text_field.dart';
 
-import '../widgets/file_item.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../issue/presentation/widgets/file_item.dart';
 
-class AddIssue extends StatefulWidget {
-  const AddIssue({super.key});
+class AddEventBottomSheet extends StatefulWidget {
+  const AddEventBottomSheet({super.key});
 
   @override
-  State<AddIssue> createState() => _AddIssueState();
+  State<AddEventBottomSheet> createState() => _AddEventBottomSheetState();
 }
 
-class _AddIssueState extends State<AddIssue> {
-  final _titleController = TextEditingController();
-  final _messageController = TextEditingController();
+class _AddEventBottomSheetState extends State<AddEventBottomSheet> {
+  final _eventTitleController = TextEditingController();
+  final _descriptionController = TextEditingController();
+  final _googleMeetLinkController = TextEditingController();
 
   List<PlatformFile> files = [];
 
@@ -31,39 +32,26 @@ class _AddIssueState extends State<AddIssue> {
   }
 
   @override
+  void dispose() {
+    _eventTitleController.dispose();
+    _descriptionController.dispose();
+    _googleMeetLinkController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        primary: false,
-        elevation: 0,
-        centerTitle: true,
-        leading: InkWell(
-          onTap: () {},
-          child: const Icon(
-            Icons.arrow_back,
-            color: darkGreyPrimary,
-          ),
-        ),
-        title: const Text(
-          'Add Issue',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-            color: darkGreyPrimary,
-          ),
-        ),
-      ),
       body: Center(
-        child: SizedBox(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12),
           width: 90.w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RichText(
                 text: const TextSpan(
-                  text: 'Title ',
+                  text: 'Event Title ',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: darkGreyPrimary,
@@ -79,21 +67,13 @@ class _AddIssueState extends State<AddIssue> {
                   ],
                 ),
               ),
-              SizedBox(
-                width: 90.w,
-                child: TextField(
-                  controller: _titleController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    fillColor: backgroundTextField,
-                    filled: true,
-                  ),
-                ),
+              CustomTextField(
+                textController: _eventTitleController,
               ),
               const SizedBox(height: 12),
               RichText(
                 text: const TextSpan(
-                  text: 'Message ',
+                  text: 'Description ',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: darkGreyPrimary,
@@ -109,23 +89,14 @@ class _AddIssueState extends State<AddIssue> {
                   ],
                 ),
               ),
-              SizedBox(
-                width: 90.w,
-                child: TextField(
-                  controller: _messageController,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    fillColor: backgroundTextField,
-                    filled: true,
-                  ),
-                ),
+              CustomTextField(
+                textController: _descriptionController,
+                isMultiline: true,
               ),
               const SizedBox(height: 12),
               RichText(
                 text: const TextSpan(
-                  text: 'Upload resources',
+                  text: 'Google meet link',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: darkGreyPrimary,
@@ -133,7 +104,20 @@ class _AddIssueState extends State<AddIssue> {
                   ),
                 ),
               ),
-              const SizedBox(height: 6),
+              CustomTextField(
+                textController: _googleMeetLinkController,
+              ),
+              const SizedBox(height: 12),
+              RichText(
+                text: const TextSpan(
+                  text: 'Resources',
+                  style: TextStyle(
+                    fontFamily: 'Poppins',
+                    color: darkGreyPrimary,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
               InkWell(
                 onTap: () {
                   pickFile();
@@ -201,28 +185,16 @@ class _AddIssueState extends State<AddIssue> {
                     color: purplePrimary,
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Transform.rotate(
-                        angle: -math.pi / 4,
-                        child: const Icon(
-                          Icons.send_rounded,
-                          color: whitePrimary,
-                          size: 18,
-                        ),
+                  child: const Center(
+                    child: Text(
+                      'Publish',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: whitePrimary,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
                       ),
-                      const SizedBox(width: 4),
-                      const Text(
-                        'Share',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: whitePrimary,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),

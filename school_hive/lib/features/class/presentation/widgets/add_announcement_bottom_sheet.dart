@@ -1,20 +1,23 @@
-import 'dart:math' as math;
 import 'package:dotted_border/dotted_border.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:school_hive/core/utils/app_colors.dart';
+import 'dart:math' as math;
 
-import '../widgets/file_item.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../issue/presentation/widgets/file_item.dart';
+import 'custom_text_field.dart';
 
-class AddIssue extends StatefulWidget {
-  const AddIssue({super.key});
+class AddAnnouncementBottomSheet extends StatefulWidget {
+  const AddAnnouncementBottomSheet({super.key});
 
   @override
-  State<AddIssue> createState() => _AddIssueState();
+  State<AddAnnouncementBottomSheet> createState() =>
+      _AddAnnouncementBottomSheetState();
 }
 
-class _AddIssueState extends State<AddIssue> {
+class _AddAnnouncementBottomSheetState
+    extends State<AddAnnouncementBottomSheet> {
   final _titleController = TextEditingController();
   final _messageController = TextEditingController();
 
@@ -31,32 +34,18 @@ class _AddIssueState extends State<AddIssue> {
   }
 
   @override
+  void dispose() {
+    _titleController.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        primary: false,
-        elevation: 0,
-        centerTitle: true,
-        leading: InkWell(
-          onTap: () {},
-          child: const Icon(
-            Icons.arrow_back,
-            color: darkGreyPrimary,
-          ),
-        ),
-        title: const Text(
-          'Add Issue',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
-            fontSize: 16,
-            color: darkGreyPrimary,
-          ),
-        ),
-      ),
       body: Center(
-        child: SizedBox(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12),
           width: 90.w,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,16 +68,8 @@ class _AddIssueState extends State<AddIssue> {
                   ],
                 ),
               ),
-              SizedBox(
-                width: 90.w,
-                child: TextField(
-                  controller: _titleController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    fillColor: backgroundTextField,
-                    filled: true,
-                  ),
-                ),
+              CustomTextField(
+                textController: _titleController,
               ),
               const SizedBox(height: 12),
               RichText(
@@ -109,23 +90,14 @@ class _AddIssueState extends State<AddIssue> {
                   ],
                 ),
               ),
-              SizedBox(
-                width: 90.w,
-                child: TextField(
-                  controller: _messageController,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    fillColor: backgroundTextField,
-                    filled: true,
-                  ),
-                ),
+              CustomTextField(
+                textController: _messageController,
+                isMultiline: true,
               ),
               const SizedBox(height: 12),
               RichText(
                 text: const TextSpan(
-                  text: 'Upload resources',
+                  text: 'Resources',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: darkGreyPrimary,
@@ -133,7 +105,6 @@ class _AddIssueState extends State<AddIssue> {
                   ),
                 ),
               ),
-              const SizedBox(height: 6),
               InkWell(
                 onTap: () {
                   pickFile();
@@ -201,28 +172,16 @@ class _AddIssueState extends State<AddIssue> {
                     color: purplePrimary,
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Transform.rotate(
-                        angle: -math.pi / 4,
-                        child: const Icon(
-                          Icons.send_rounded,
-                          color: whitePrimary,
-                          size: 18,
-                        ),
+                  child: const Center(
+                    child: Text(
+                      'Publish',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: whitePrimary,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
                       ),
-                      const SizedBox(width: 4),
-                      const Text(
-                        'Share',
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: whitePrimary,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
