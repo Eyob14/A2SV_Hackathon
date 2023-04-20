@@ -4,10 +4,13 @@ import 'package:equatable/equatable.dart';
 class UserAuthCredential extends Equatable {
   final String email;
   final String accessToken;
+  final String userId;
 
-  const UserAuthCredential({
+  const UserAuthCredential(
+    {
     required this.email,
     required this.accessToken,
+    required this.userId,
   });
 
   @override

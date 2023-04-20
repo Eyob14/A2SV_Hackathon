@@ -5,6 +5,7 @@ import 'features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'core/presentation/routes/router_config.dart';
 import 'core/presentation/widgets/dismiss_keyboard.dart';
 import 'features/authentication/data/datasources/authentication_local_data_source.dart';
+import 'features/question/presentation/bloc/question_bloc.dart';
 import 'features/classes/presentation/bloc/classes_bloc.dart';
 import 'features/issue/presentation/commentsBloc/comments_bloc.dart';
 import 'features/issue/presentation/issueBloc/issues_bloc.dart';
@@ -21,6 +22,9 @@ void main() async {
       providers: [
         BlocProvider<AuthenticationBloc>(
           create: (_) => serviceLocator<AuthenticationBloc>(),
+        ),
+        BlocProvider<QuestionsBloc>(
+          create: (_) => serviceLocator<QuestionsBloc>(),
         ),
         BlocProvider<IssuesBloc>(
           create: (_) => serviceLocator<IssuesBloc>(),

@@ -2,15 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:school_hive/features/authentication/presentation/pages/complete_profile.dart';
-import 'package:school_hive/features/events/presentation/pages/events_page.dart';
-
+import 'package:school_hive/features/class/presentation/widgets/add_announcement_bottom_sheet.dart';
+import 'package:school_hive/features/class/presentation/widgets/add_event_bottom_sheet.dart';
+import 'package:school_hive/features/classes/presentation/pages/class_detail_page.dart';
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
-import '../../../features/classes/presentation/pages/class_detail_page.dart';
-import '../../../features/issue/domain/entities/Issue.dart';
-import '../../../features/issue/presentation/pages/details_page.dart';
+import '../../../features/question/presentation/pages/add_question.dart';
 import '../../../features/issue/presentation/pages/home_page_navigator.dart';
 import '../../../features/profile/presentaion/pages/edit_profile_page.dart';
 import '../../../features/profile/presentaion/pages/profile_page.dart';
@@ -88,19 +86,24 @@ class AppRouter extends StatelessWidget {
               const HomePageNavigator(),
         ),
         GoRoute(
-          path: AppRoutes.detailsPage,
+          path: AppRoutes.addIssuePage,
           builder: (BuildContext context, GoRouterState state) =>
-              DetailsPage(issue: state.extra as Issue),
+              const AddQuestion(),
+        ),
+        GoRoute(
+          path: AppRoutes.addEventPage,
+          builder: (BuildContext context, GoRouterState state) =>
+              const AddEventBottomSheet(),
+        ),
+        GoRoute(
+          path: AppRoutes.addAnnouncementPage,
+          builder: (BuildContext context, GoRouterState state) =>
+              const AddAnnouncementBottomSheet(),
         ),
         GoRoute(
           path: AppRoutes.classDetailsPage,
           builder: (BuildContext context, GoRouterState state) =>
-              ClassDetailsPage(),
-        ),
-        GoRoute(
-          path: AppRoutes.eventsPage,
-          builder: (BuildContext context, GoRouterState state) =>
-              const EventPage(),
+              const ClassDetailsPage(),
         ),
       ],
     );

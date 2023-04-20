@@ -22,6 +22,8 @@ class AuthenticationRemoteDataSourceImpl
     required this.client,
   });
 
+  final baseUrl = 'https://school-hive-net.onrender.com/api/v1';
+
   @override
   Future<UserAuthCredentialModel> login({
     required String email,
@@ -36,17 +38,14 @@ class AuthenticationRemoteDataSourceImpl
       body: loginBody,
       headers: {'Content-Type': 'application/json'},
     );
-    print(loginBody);
-    print(response.statusCode);
-    print(response.body);
-    print(response.headers);
-    print(response.headers.keys);
+
     if (response.statusCode == 200) {
       final responseBody = json.decode(response.body);
       final responseBodyData = responseBody['data'];
       final responseJson = {
         'email': responseBodyData['email'],
         'token': responseBody['token'],
+        'userId': responseBodyData['_id'],
       };
       return UserAuthCredentialModel.fromJson(responseJson);
     } else {

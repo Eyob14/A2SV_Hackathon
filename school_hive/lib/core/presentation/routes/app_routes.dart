@@ -10,6 +10,9 @@ class AppRoutes {
   static const String calendarPage = '/calendar';
   static const String addIssuePage = '/addIssue';
   static const String classPagePage = '/classPage';
+  
+  static const String addEventPage = '/addEventPage';
+  static const String addAnnouncementPage = '/addAnnouncementPage';
   static const String classDetailsPage = '/classDetails';
   static const String eventsPage = '/events';
 }

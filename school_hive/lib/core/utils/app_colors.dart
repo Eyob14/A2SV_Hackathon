@@ -6,6 +6,8 @@ const greyPrimary = Color(0xFF868686);
 const greySecondary = Color(0xFF8C8C8C);
 const lightBluePrimary = Color(0xFFF1F3FC);
 const darkGreyPrimary = Color(0xFF454545);
+const backgroundTextField = Color(0xFFF4F4F4);
+const asteriskRedColor = Color(0xFFB51111);
 
 const primaryColor = Color.fromRGBO(89, 54, 161, 1);
 const headlineColor = Colors.black;
