@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:school_hive/features/profile/presentaion/pages/profile_page.dart';
 
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/image_urls.dart';
 import '../../../classes/presentation/pages/classes_page.dart';
 import '../../../classes/presentation/pages/events_page.dart';
 import 'favorite_page.dart';
@@ -31,6 +34,8 @@ class _HomePageNavigatorState extends State<HomePageNavigator> {
       bottomNavigationBar: BottomNavigationBar(
         key: globalKey,
         elevation: 3,
+        selectedItemColor: primaryColor,
+        selectedFontSize: 1.7.h,
         currentIndex: index,
         type: BottomNavigationBarType.fixed,
         onTap: (index) {
@@ -40,26 +45,38 @@ class _HomePageNavigatorState extends State<HomePageNavigator> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: SvgPicture.asset(
+              homeIcon,
+              fit: BoxFit.scaleDown,
+            ),
             label: "Home",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/icons/phone device.svg',
+              eventIcon,
               fit: BoxFit.scaleDown,
             ),
             label: "Events",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: SvgPicture.asset(
+              classIcon,
+              fit: BoxFit.scaleDown,
+            ),
             label: "Classes",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: SvgPicture.asset(
+              favoriteIcon,
+              fit: BoxFit.scaleDown,
+            ),
             label: "Favorites",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: SvgPicture.asset(
+              profileIcon,
+              fit: BoxFit.scaleDown,
+            ),
             label: "Profile",
           ),
         ],

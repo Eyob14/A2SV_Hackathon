@@ -7,6 +7,7 @@ import 'package:school_hive/features/authentication/presentation/pages/complete_
 import '../../../features/authentication/data/datasources/authentication_local_data_source.dart';
 import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
+import '../../../features/classes/presentation/pages/class_detail_page.dart';
 import '../../../features/issue/domain/entities/Issue.dart';
 import '../../../features/issue/presentation/pages/details_page.dart';
 import '../../../features/issue/presentation/pages/home_page.dart';
@@ -90,6 +91,11 @@ class AppRouter extends StatelessWidget {
           path: AppRoutes.detailsPage,
           builder: (BuildContext context, GoRouterState state) =>
               DetailsPage(issue: state.extra as Issue),
+        ),
+        GoRoute(
+          path: AppRoutes.classDetailsPage,
+          builder: (BuildContext context, GoRouterState state) =>
+              ClassDetailsPage(),
         ),
       ],
     );

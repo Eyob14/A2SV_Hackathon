@@ -6,3 +6,9 @@ const signup = 'assets/images/signup.svg';
 const graduation = 'assets/images/graduation.png';
 const String profileImage = 'assets/images/profile.png';
 const String profile = 'assets/images/profile.png';
+// navigation icons
+const homeIcon = 'assets/icons/home_icon.svg';
+const eventIcon = 'assets/icons/event_icon.svg';
+const classIcon = 'assets/icons/class_icon.svg';
+const favoriteIcon = 'assets/icons/favorite_icon.svg';
+const profileIcon = 'assets/icons/profile_icon.svg';

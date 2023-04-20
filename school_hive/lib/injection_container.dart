@@ -7,6 +7,12 @@ import 'features/authentication/data/datasources/authentication_remote_data_sour
 import 'features/authentication/domain/repositories/authentication_repository.dart';
 import 'features/authentication/domain/usecases/login_usecase.dart';
 import 'features/authentication/presentation/bloc/authentication_bloc.dart';
+import 'features/classes/data/datasource/remote_class_data_source.dart';
+import 'features/classes/data/repositories/class_repository_impl.dart';
+import 'features/classes/domain/repositories/class_repository.dart';
+import 'features/classes/domain/usecase/create_class_usecase.dart';
+import 'features/classes/domain/usecase/get_all_classes_usecase.dart';
+import 'features/classes/presentation/bloc/classes_bloc.dart';
 import 'features/issue/data/datasources/issue_remote_data_source.dart';
 import 'features/issue/data/repositories/issue_repository_impl.dart';
 import 'features/issue/domain/repositories/issue_repository.dart';
@@ -25,6 +31,11 @@ Future<void> init() async {
   serviceLocator.registerFactory(
     () => IssuesBloc(getAllIssuesUseCase: serviceLocator()),
   );
+  serviceLocator.registerFactory(
+    () => ClassesBloc(
+        getAllClassesUseCase: serviceLocator(),
+        createClassesUseCase: serviceLocator()),
+  );
 
   // Usecase
   serviceLocator.registerLazySingleton(
@@ -32,6 +43,12 @@ Future<void> init() async {
   );
   serviceLocator.registerLazySingleton(
     () => GetAllIssuesUseCase(issuesRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => GetAllClassesUseCase(classesRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => CreateClassesUseCase(classesRepository: serviceLocator()),
   );
 
   // Repository
@@ -43,6 +60,11 @@ Future<void> init() async {
   );
   serviceLocator.registerLazySingleton<IssuesRepository>(
     () => IssuesRepositoryImpl(
+      remoteDataSource: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<ClassesRepository>(
+    () => ClassesRepositoryImpl(
       remoteDataSource: serviceLocator(),
     ),
   );
@@ -62,6 +84,12 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton<IssuesRemoteDataSource>(
     () => IssuesRemoteDataSourceImpl(
+      client: serviceLocator(),
+      flutterSecureStorage: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerLazySingleton<ClassesRemoteDataSource>(
+    () => ClassesRemoteDataSourceImpl(
       client: serviceLocator(),
       flutterSecureStorage: serviceLocator(),
     ),

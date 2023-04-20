@@ -123,7 +123,10 @@ class _HomePageState extends State<HomePage> {
                         itemCount: state.issues.length),
                   );
                 } else if (state is IssuesInitial) {
-                  return const CircularProgressIndicator();
+                  return Padding(
+                    padding: EdgeInsets.only(top: 35.h),
+                    child: const CircularProgressIndicator(),
+                  );
                 } else {
                   return Container(
                     padding: EdgeInsets.only(top: 16.h),
