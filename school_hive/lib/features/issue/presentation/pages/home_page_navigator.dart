@@ -7,6 +7,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/image_urls.dart';
 import '../../../classes/presentation/pages/classes_page.dart';
 import '../../../classes/presentation/pages/events_page.dart';
+import '../../../events/presentation/pages/events_page.dart';
 import 'favorite_page.dart';
 import 'home_page.dart';
 
@@ -21,7 +22,7 @@ class _HomePageNavigatorState extends State<HomePageNavigator> {
   int index = 0;
   final screens = [
     const HomePage(),
-    const EventsPage(),
+    const EventPage(),
     const ClassesPage(),
     const FavoritePage(),
     ProfilePage(),

@@ -16,6 +16,7 @@ import 'features/classes/presentation/bloc/classes_bloc.dart';
 import 'features/issue/data/datasources/issue_remote_data_source.dart';
 import 'features/issue/data/repositories/issue_repository_impl.dart';
 import 'features/issue/domain/repositories/issue_repository.dart';
+import 'features/issue/domain/usecases/get_all_answers_for_issue.dart';
 import 'features/issue/domain/usecases/get_all_issue_usecase.dart';
 import 'features/issue/presentation/bloc/issues_bloc.dart';
 
@@ -29,7 +30,10 @@ Future<void> init() async {
     () => AuthenticationBloc(loginUsecase: serviceLocator()),
   );
   serviceLocator.registerFactory(
-    () => IssuesBloc(getAllIssuesUseCase: serviceLocator()),
+    () => IssuesBloc(
+      getAllIssuesUseCase: serviceLocator(),
+      getAllAnswersForIssuesUseCase: serviceLocator(),
+    ),
   );
   serviceLocator.registerFactory(
     () => ClassesBloc(
@@ -43,6 +47,11 @@ Future<void> init() async {
   );
   serviceLocator.registerLazySingleton(
     () => GetAllIssuesUseCase(issuesRepository: serviceLocator()),
+  );
+  serviceLocator.registerLazySingleton(
+    () => GetAllAnswersForIssueUseCase(
+      issuesRepository: serviceLocator(),
+    ),
   );
   serviceLocator.registerLazySingleton(
     () => GetAllClassesUseCase(classesRepository: serviceLocator()),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -7,11 +8,25 @@ import '../../../../core/presentation/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../domain/entities/Issue.dart';
 import '../../../profile/presentaion/widgets/profile_card.dart';
+import '../bloc/issues_bloc.dart';
 import '../widgets/comment_card.dart';
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends StatefulWidget {
   final Issue issue;
   const DetailsPage({super.key, required this.issue});
+
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  @override
+  void initState() {
+    super.initState();
+    context
+        .read<IssuesBloc>()
+        .add(GetAllAnswersForIssueEvent(id: widget.issue.id));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +41,7 @@ class DetailsPage extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              issue.title,
+              widget.issue.title,
               style: TextStyle(
                 color: headlineColor,
                 fontSize: 2.h,
@@ -37,22 +52,22 @@ class DetailsPage extends StatelessWidget {
               height: 2.2.h,
             ),
             ProfileCard(
-              avatar: issue.profile.avatar,
-              name: issue.profile.name,
-              time: issue.profile.createdAt,
+              avatar: widget.issue.profile.avatar,
+              name: widget.issue.profile.name,
+              time: widget.issue.profile.createdAt,
             ),
             SizedBox(
               height: 3.h,
             ),
             Text(
-              issue.description,
+              widget.issue.description,
               style: TextStyle(
                 color: bodyTextColor,
                 fontSize: 1.5.h,
                 height: 0.3.w,
               ),
             ),
-            issue.archives.isNotEmpty
+            widget.issue.archives.isNotEmpty
                 ? Text(
                     "Resources",
                     style: TextStyle(
@@ -71,22 +86,40 @@ class DetailsPage extends StatelessWidget {
             SizedBox(
               height: 3.h,
             ),
-            Expanded(
-              child: ListView.separated(
-                  itemBuilder: (context, index) => GestureDetector(
-                        child: CommentCard(
-                          comment: comments[index % 3],
-                        ),
-                        onTap: () {
-                          context.push(
-                            AppRoutes.detailsPage,
-                          );
-                        },
-                      ),
-                  separatorBuilder: (context, index) => SizedBox(
-                        height: 2.8.h,
-                      ),
-                  itemCount: comments.length * 2),
+            BlocBuilder<IssuesBloc, IssuesState>(
+              builder: (context, state) {
+                if (state is AllAnswersForIssues) {
+                  return Expanded(
+                    child: ListView.separated(
+                        itemBuilder: (context, index) => GestureDetector(
+                              child: CommentCard(
+                                comment: comments[index % 3],
+                              ),
+                              onTap: () {
+                                context.push(
+                                  AppRoutes.detailsPage,
+                                );
+                              },
+                            ),
+                        separatorBuilder: (context, index) => SizedBox(
+                              height: 2.8.h,
+                            ),
+                        itemCount: comments.length * 2),
+                  );
+                } else if (state is IssuesInitial) {
+                  return Padding(
+                    padding: EdgeInsets.only(top: 35.h),
+                    child: const CircularProgressIndicator(),
+                  );
+                } else {
+                  return Container(
+                    padding: EdgeInsets.only(top: 16.h),
+                    child: const Center(
+                      child: Text('No Results Found...'),
+                    ),
+                  );
+                }
+              },
             ),
           ],
         ),

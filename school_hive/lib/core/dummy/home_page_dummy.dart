@@ -71,24 +71,27 @@ List<Comment> comments = [
     id: "1",
     description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-    upVotes: 120,
-    downVotes: 3,
+    upVote: 120,
+    downVote: 3,
     time: DateTime.now(),
+    archives: [],
   ),
   Comment(
     id: "2",
     description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-    upVotes: 120,
-    downVotes: 3,
+    upVote: 120,
+    downVote: 3,
     time: DateTime.now(),
+    archives: [],
   ),
   Comment(
     id: "3",
     description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
-    upVotes: 120,
-    downVotes: 3,
+    upVote: 120,
+    downVote: 3,
     time: DateTime.now(),
+    archives: [],
   ),
 ];

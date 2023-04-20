@@ -56,7 +56,7 @@ class AppRouter extends StatelessWidget {
     _router = GoRouter(
       // refreshListenable: authListenable,
       redirect: ((context, state) => redirector(state)),
-      initialLocation: AppRoutes.eventsPage,
+      initialLocation: AppRoutes.homePage,
       routes: <GoRoute>[
         GoRoute(
           path: AppRoutes.loginPage,

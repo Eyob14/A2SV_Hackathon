@@ -63,7 +63,7 @@ class _CommentCardState extends State<CommentCard> {
                             width: 1.w,
                           ),
                           Text(
-                            widget.comment.upVotes.toString(),
+                            widget.comment.upVote.toString(),
                             style: TextStyle(
                               color: bodyTextColor,
                               fontSize: 1.5.h,
@@ -91,7 +91,7 @@ class _CommentCardState extends State<CommentCard> {
                             width: 1.w,
                           ),
                           Text(
-                            widget.comment.downVotes.toString(),
+                            widget.comment.downVote.toString(),
                             style: TextStyle(
                               color: bodyTextColor,
                               fontSize: 1.5.h,

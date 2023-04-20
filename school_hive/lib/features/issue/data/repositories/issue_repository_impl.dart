@@ -4,6 +4,7 @@ import 'package:school_hive/features/issue/domain/entities/Issue.dart';
 import 'package:school_hive/core/error/failure.dart';
 
 import 'package:dartz/dartz.dart';
+import 'package:school_hive/features/issue/domain/entities/comment.dart';
 
 import '../../domain/repositories/issue_repository.dart';
 import '../datasources/issue_remote_data_source.dart';
@@ -25,5 +26,15 @@ class IssuesRepositoryImpl extends IssuesRepository {
   Future<Either<Failure, Issue>> getIssueDetails(String id) {
     // TODO: implement getIssueDetails
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, List<Comment>>> getAllAnswersForIssue(String id) async {
+    try {
+      final allIssues = await remoteDataSource.getAllAnswersForIssue(id);
+      return Right(allIssues);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
   }
 }
