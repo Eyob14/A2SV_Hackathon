@@ -41,6 +41,7 @@ class _AddQuestionState extends State<AddQuestion> {
       appBar: AppBar(
         backgroundColor: whiteColor,
         elevation: 0,
+        foregroundColor: headlineColor,
         title: Text(
           "Add Issue",
           style: TextStyle(

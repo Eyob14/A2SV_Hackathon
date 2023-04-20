@@ -9,6 +9,7 @@ import '../../../features/authentication/presentation/pages/login_page.dart';
 import '../../../features/authentication/presentation/pages/signup_page.dart';
 import '../../../features/classes/presentation/widgets/add_announcement_bottom_sheet.dart';
 import '../../../features/classes/presentation/widgets/add_event_bottom_sheet.dart';
+import '../../../features/issue/presentation/pages/details_page.dart';
 import '../../../features/question/presentation/pages/add_question.dart';
 import '../../../features/issue/presentation/pages/home_page_navigator.dart';
 import '../../../features/profile/presentaion/pages/edit_profile_page.dart';
@@ -85,6 +86,10 @@ class AppRouter extends StatelessWidget {
           path: AppRoutes.homePage,
           builder: (BuildContext context, GoRouterState state) =>
               const HomePageNavigator(),
+        ),
+        GoRoute(
+          path: AppRoutes.detailsPage,
+          builder: (BuildContext context, GoRouterState state) => DetailsPage(issue: null,),
         ),
         GoRoute(
           path: AppRoutes.addIssuePage,
