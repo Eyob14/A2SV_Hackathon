@@ -1,9 +1,9 @@
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../../core/error/exception.dart';
-import '../../../../core/presentation/usecases/usecase.dart';
-import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/secure_storage_keys.dart';
 import '../model/user_auth_credential_model.dart';
 
 abstract class AuthenticationRemoteDataSource {
@@ -11,15 +11,17 @@ abstract class AuthenticationRemoteDataSource {
     required String email,
     required String password,
   });
-  Future<NoReturns> logout();
+  Future<void> logout();
 }
 
 class AuthenticationRemoteDataSourceImpl
     extends AuthenticationRemoteDataSource {
   final http.Client client;
+  final FlutterSecureStorage flutterSecureStorage;
 
   AuthenticationRemoteDataSourceImpl({
     required this.client,
+    required this.flutterSecureStorage,
   });
 
   final baseUrl = 'https://school-hive-net.onrender.com/api/v1';
@@ -54,8 +56,27 @@ class AuthenticationRemoteDataSourceImpl
   }
 
   @override
-  Future<NoReturns> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<void> logout() async {
+    final userCredential =
+        await flutterSecureStorage.read(key: authorizationKey);
+    if (userCredential == null) {
+      throw UnauthorizedRequestException();
+    }
+
+    final token = json.decode(userCredential)['token'];
+
+    final response = await client.get(
+      Uri.parse('$baseUrl/user/logout'),
+      headers: {
+        'authorization': 'Bearer $token',
+        'Content-Type': 'application/json'
+      },
+    );
+
+    if (response.statusCode == 200) {
+      return;
+    }
+
+    throw ServerException();
   }
 }

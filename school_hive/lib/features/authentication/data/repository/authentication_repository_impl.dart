@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../../core/presentation/usecases/usecase.dart';
 import '../../../../../core/error/failure.dart';
 import '../../../../../features/authentication/domain/domain.dart';
-import '../../../../../features/authentication/domain/entities/user_auth_credential.dart';
 import '../../../../core/error/exception.dart';
 import '../datasources/authentication_local_data_source.dart';
 import '../datasources/authentication_remote_data_source.dart';
@@ -18,9 +16,13 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   });
 
   @override
-  Future<Either<Failure, bool>> getAppInitialization() {
-    // TODO: implement getAppInitialization
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> getAppInitialization() async {
+    try {
+      final isAppInitialized = await localDataSource.getAppInitialization();
+      return Right(isAppInitialized);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
   }
 
   @override
@@ -34,9 +36,13 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<Either<Failure, void>> initializeApp() {
-    // TODO: implement initializeApp
-    throw UnimplementedError();
+  Future<Either<Failure, Unit>> initializeApp() async {
+    try {
+      await localDataSource.initializeApp();
+      return const Right(unit);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
   }
 
   @override
@@ -63,11 +69,11 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
   }
 
   @override
-  Future<Either<Failure, NoReturns>> logout() async {
+  Future<Either<Failure, Unit>> logout() async {
     try {
       await remoteDataSource.logout();
       await localDataSource.clearUserAuthCredentialCache();
-      return const Right(NoReturns());
+      return const Right(unit);
     } on CacheException {
       return Left(CacheFailure());
     } on ServerException {

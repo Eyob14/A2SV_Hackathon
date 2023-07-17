@@ -4,13 +4,13 @@ import '../../../../core/error/failure.dart';
 import '../../../../core/presentation/usecases/usecase.dart';
 import '../repositories/authentication_repository.dart';
 
-class LogoutUsecase implements UseCase<NoReturns, NoParams> {
+class LogoutUsecase implements UseCase<void, NoParams> {
   final AuthenticationRepository repository;
 
   LogoutUsecase({required this.repository});
 
   @override
-  Future<Either<Failure, NoReturns>> call(NoParams params) async {
+  Future<Either<Failure, void>> call(NoParams params) async {
     return await repository.logout();
   }
 }
